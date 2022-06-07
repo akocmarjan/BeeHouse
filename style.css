@@ -1,0 +1,442 @@
+:root{
+    --main-color: #FCD12A;
+    --main-color2: rgba(252,209,42,0.9);
+    --color-dark: #634E00;
+    --text-grey: #8390A2;
+    --main:#f1f5f9;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+    min-height: 100vh;
+    width: 100%;
+    background-image:  url(images/banner.png);
+    background-size: cover;
+    background-position: center;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 7%;
+}
+.logo{
+    width: 140px;
+    cursor: pointer;
+}
+.nav-links li{
+    list-style: none;
+    display: inline-block;
+    margin: 10px 30px;
+}
+.nav-links li a{
+    text-decoration: none;
+    color: black;
+}
+.login-btn button{
+    background: #F9A300;
+    color: black;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.container{
+    padding: 0 7%;
+}
+.header h1{
+    font-size: 4vw;
+    font-weight: 500;
+    color: black;
+    text-align: center;
+    padding-top: 15%;
+}
+.search-bar{
+    background: white;
+    width: 40%;
+    margin: 30px auto;
+    padding: 6px 10px 6px 30px;
+    border-radius: 50px;
+}
+.search-bar form{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.search-bar form input{
+    display: block;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+.search-bar form button{
+    background: grey;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+.search-bar form button img{
+    width: 15px;
+    margin-top: 7px;
+}
+.location-input{
+    flex: 1;
+}
+.search-bar form label{
+    font-weight: 600;
+}
+.container .bot{
+    text-align: center;
+}
+.header h2{
+    font-size: 2vw;
+    font-weight: 500;
+    color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.signup-btn{
+    background: #F9A300;
+    color: black;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+
+/* ----------------------footer--------------------- */
+.footer{
+    padding-top: 7%;
+    margin: 80px 0 10px;
+    text-align: center;
+}
+.footer a{
+    text-decoration: none;
+    color: #634E00;
+    font-size: 25px;
+    margin: 0 10px;
+    opacity: 80%;
+}
+.footer hr{
+    background: #634E00;
+    height: 1px;
+    width: 100%;
+    border: 0;
+    margin: 20px 0;
+}
+.footer p{
+    padding-bottom: 15px;
+}
+.active{
+    position: relative;
+}
+.active::after{
+    content: '';
+    background: black;
+    width: 25px;
+    height: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -12px;
+    border-radius: 2px;
+}
+/* --------------------------------------popup--------------------------------------------- */
+.popup{
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(1.25);
+    width: 380px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+}
+.popup.active{
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+}
+.popup .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.popup .form h2{
+    text-align: center;
+    color: #222;
+    margin: 10px 0px 20px;
+    margin-top: 10%;
+    font-size: 25px;
+}
+.popup .form .form-element{
+    margin: 15px 0px;
+}
+.popup .form-element label{
+    font-size: 14px;
+    color: #222;
+}
+.popup .form .form-element input[type="text"],
+.popup .form .form-element input[type="password"]{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+.popup .form .form-element input[type="checkbox"]{
+    margin-right: 5px;
+}
+.popup .form .form-element input[type="submit"]{
+    width: 100%;
+    height: 40px;
+    outline: none;
+    font-size: 15px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.popup .form .form-element a{
+    display: block;
+    text-align: right;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ----------------------sign up------------------------------------------ */
+.wrapper{
+    position: relative;
+    margin: 0 auto;
+    opacity: 1;
+    
+    width: 380px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+.form-group{
+    margin: 15px 0px;
+}
+.form-group label{
+    font-size: 14px;
+    color: #222;
+}
+.form-group input[type="text"],
+.form-group input[type="password"]{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+.form-group input[type="submit"]{
+    width: 100%;
+    height: 40px;
+    outline: none;
+    font-size: 15px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+.invalid-feedback{
+    color: red;
+}
+
+/* ---------------------------for smallscreen devices------------------ */
+@media only screen and (max-width: 700px){
+
+    .logo{
+        position: fixed;
+        top: 4%;
+        left: 7%;
+    }
+    nav{
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        display: inline-block;
+        width: 100%;
+        padding: 100px 7% 0;
+        background: black;
+        text-align: right;
+    }
+    nav .nav-links li{
+        margin: 10px 0;
+        display: block;
+    }
+    .login-btn button{
+        margin: 15px 0 30px;
+        display: inline-block;
+
+    }
+}
+input{
+
+    display: inline;
+ 
+ }
+
+
+/* TAB BAR */
+::selection{
+    background: rgba(23,162,184,0.3);
+  }
+.tab-wrapper{
+    /* max-width: 700px;
+    width: 100%;
+    margin: 200px auto;
+    padding: 25px 30px 30px 30px;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1); */
+}
+.tab-wrapper header{
+    font-size: 30px;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+.tab-wrapper nav{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.tab-wrapper nav label{
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    color: black;
+    font-size: 17px;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+.tab-wrapper nav label:hover{
+    background: var(--main-color2);
+}
+#lessor:checked ~ nav label.lessor,
+#tenant:checked ~ nav label.tenant{
+    color: black;
+}
+.tab-nav label i{
+    padding-right: 7px;
+}
+.tab-nav .slider{
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    left: 9%;
+    top: 40%;
+    bottom: 0;
+    z-index: 0;
+    border-radius: 5px;
+    background: var(--main-color2);
+    transition: all 0.3s ease;
+}
+input[type="radio"]{
+    display: none;
+}
+#tenant:checked ~ nav .slider{
+    left: 52%;
+}
+
+section .content{
+    display: none;
+    background: #fff;
+}
+#lessor:checked ~ section .content-1,
+#tenant:checked ~ section .content-2{
+    display: block;
+}
+section .content .title{
+    font-size: 21px;
+    font-weight: 500;
+    margin: 30px 0 10px 0;
+}
+section .content p{
+    text-align: justify;
+}
+
+
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    background-image: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+select::-ms-expand{
+    display: none;
+}
+.select{
+    margin-top: 5px;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    line-height: 3;
+    overflow: hidden;
+}
+select{
+    flex: 1;
+    padding: 0 .5em;
+    cursor: pointer;
+}
+.select::after{
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+.select:hover::after{
+    color: var(--main-color);
+}
