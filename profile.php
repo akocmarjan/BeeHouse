@@ -9,9 +9,9 @@ require ('functions.php');
 //     exit;
 // }
 //$unit = $table->getTotalTenantUnits($_SESSION['userid']);
-$sum = $table->getSUM($_SESSION['userid']);
-$count = $table->getCOUNT($_SESSION['userid']);
-$applicant = $table->getApplicants($_SESSION['userid']);
+//$sum = $table->getSUM($_SESSION['userid']);
+$count = $table->getCOUNT($_SESSION['partnerid']);
+$applicant = $table->getApplicants($_SESSION['partnerid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,13 +92,13 @@ $applicant = $table->getApplicants($_SESSION['userid']);
         <main>
             <?php
             // Fetch category
-           foreach($sum as $sums){}
+        //    foreach($sum as $sums){}
            foreach($count as $counts){}
             ?>
             <div class="cards">
                 <div class="card-single">
                     <div>
-                        <h1><?php echo $sums['SUM(tenants)'] ?></h1>
+                        <h1>0</h1>
                         <span>Tenants</span>
                     </div>
                     <div>
@@ -107,7 +107,7 @@ $applicant = $table->getApplicants($_SESSION['userid']);
                 </div>
                 <div class="card-single">
                     <div>
-                        <h1><?php echo $counts['COUNT(units.id)']?></h1>
+                        <h1><?php echo $counts['COUNT(property.id)']?></h1>
                         <span>Units</span>
                     </div>
                     <div>
@@ -157,7 +157,7 @@ $applicant = $table->getApplicants($_SESSION['userid']);
                                     <tbody>
                                         <td><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
                                         <td></td>
-                                        <td><?php echo $applicants['name'] ?></td>
+                                        <td><?php echo $applicants['property_name'] ?></td>
                                         <td><?php echo $applicants['room_number'] ?></td>
                                         <?php if($applicants['status'] == 0): ?>
                                         <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>

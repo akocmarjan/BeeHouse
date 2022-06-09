@@ -1,13 +1,11 @@
 <?php
-session_start();
 if(isset($_POST['submit']))
 {
 
-    $unit_id = $_POST['unitID'];
+    $property_id = $_POST['propertyID'];
     $room_number = $_POST['roomNumber'];
     $slots = $_POST['slots'];
     $price = $_POST['price'];
-    $status = $_POST['status'];
 
     include '../classes/dbh-classes.php';
     include '../classes/add-rooms-classes.php';
@@ -38,7 +36,7 @@ if(isset($_POST['submit']))
 			}
 			$creattime=date('Y-m-d h:i:s');
 			//insert
-            $addimages = new AddimagesContr($finalimg, $creattime, $unit_id);
+            $addimages = new AddimagesContr($finalimg, $creattime, $property_id);
             $addimages->addImages();
 
 		}else
@@ -47,7 +45,7 @@ if(isset($_POST['submit']))
 		}
 	}
 
-    $addrooms = new AddroomsContr($unit_id, $room_number, $slots, $price, $status);
+    $addrooms = new AddroomsContr($property_id, $room_number, $slots, $price);
 
     $addrooms->addRooms();
 

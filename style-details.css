@@ -156,8 +156,28 @@ nav{
     border-radius: 2px;
 }
 
-
 /* --------------------------------------popup--------------------------------------------- */
+.popup-bg{
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(84, 86, 90, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+}
+.popup-bg.active{
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+    -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+    transition: opacity 0.3s 0s, visibility 0s 0s;
+}
 .popup{
     position: absolute;
     top: -150%;
@@ -198,6 +218,7 @@ nav{
     text-align: center;
     color: #222;
     margin: 10px 0px 20px;
+    margin-top: 10%;
     font-size: 25px;
 }
 .popup .form .form-element{
@@ -238,309 +259,90 @@ nav{
     font-weight: 600;
 }
 
-
-/* -------------------------------house details page------------------------------ */
-.house-details{
-    padding: 0 12%;
-}
-.house-form{
-    margin: 30px 0;
+/* TAB BAR */
+::selection{
+    background: rgba(23,162,184,0.3);
+  }
+.tab-wrapper{
+    /* max-width: 700px;
+    width: 100%;
+    margin: 200px auto;
+    padding: 25px 30px 30px 30px;
+    border-radius: 5px;
     background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 50px;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1); */
 }
-.house-title{
-    margin-top: 50px;
-}
-.house-title h1{
+.tab-wrapper header{
+    font-size: 30px;
     font-weight: 600;
+    padding-bottom: 20px;
 }
-.house-title .row{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px 0;
-}
-.house-title span{
-    margin: 0 20px;
-}
-.house-title i{
-    color: #FCD12A;
-    font-size: 14px;
-}
-.gallery{
-    display: grid;
-    grid-gap: 10px;
-    grid-template-areas: 'first first . .' 'first first . .';
-    margin: 20px 0;
-}
-.gallery img{
+.tab-wrapper nav{
+    position: relative;
     width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.tab-wrapper nav label{
     display: block;
-    border-radius: 10px;
-}
-.gallery-img-1{
-    grid-area: first;
-}
-.small-details{
-    flex: 1;
-}
-.small-details h2{
-    font-weight: 500;
-}
-.small-details h4{
-    text-align: right;
-    font-size: 22px;
-}
-.line{
-    border: 0;
-    height: 1px;
-    background: #ccc;
-    max-width: 800px;
-    margin: 20px 0 50px;
-}
-.check-form{
-    margin: 30px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 50px;
-}
-.rooms-form{
-    margin: 30px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    border-radius: 8px;
-    align-items: center;
-    padding: 10px 50px;
-}
-.room-card{
-    margin: 30px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.2);
-    display: flex;
-    border-radius: 8px;
-    align-items: center;
-    padding: 10px 50px;
-    justify-content: space-between;
-}
-.room-card .fa-check-circle{
-    color: green;
-}
-.room-card .fa-times-circle{
-    color: red;
-}
-.room-card .fa-exclamation-circle{
-    color: orange;
-}
-.button1{
-    /* width: 20%;
-    height: 40px;
-    outline: none;
-    font-size: 15px;
-    background: var(--main-color);
-    color: #222;
-    border-radius: 10px;
-    cursor: pointer; */
-    border-radius: 4px;
-    background-color: var(--main-color);
-    border: none;
-    color: #222;
+    height: 100%;
+    width: 100%;
     text-align: center;
-    font-size: 20px;
-    padding: 20px;
-    width: 165px;
-    transition: all 0.5s;
+    line-height: 50px;
     cursor: pointer;
-    margin: 5px;
-}
-.button1 span {
-    cursor: pointer;
-    display: inline-block;
     position: relative;
-    transition: 0.5s;
-}
-  
-.button1 span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-.button1:hover span {
-    padding-right: 25px;
-}
-
-.button1:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-.check-form label{
-    display: block;
-}
-.check-form div{
-    padding: 20px;
-}
-.check-form input{
-    background: transparent;
-    border: 0;
-    outline: none;
-}
-.check-form button{
-    background: #FCD12A;
-    border: 0;
-    outline: none;
-    padding: 18px;
-    width: 350px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.guest-field{
-    flex: 1;
-}
-.details-form{
-    margin: 30px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 50px;
-    max-width: 800px;
-}
-.details-list{
-    list-style: none;
-    margin: 50px 0;
-}
-.details-list li{
-    margin-left: 50px;
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    position: relative;
-}
-.details-list li span{
-    display: block;
-    font-weight: 400;
-    font-size: 16px;
-}
-.details-list li i{
-    position: absolute;
-    top: 5px;
-    left: -40px;
-}
-
-.home-desc{
-    max-width: 700px;
-    margin-bottom: 50px;
-    margin: 30px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 50px;
-}
-
-.map{
-    margin: 50px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 20px 50px;
-}
-.map iframe{
-    width: 100%;
-    margin-bottom: 30px;
-}
-.map h3{
-    font-size: 26px;
-    font-weight: 500;
-    margin-bottom: 30px;
-}
-.map b{
-    display: block;
-    margin-bottom: 16px;
-}
-.host{
-    margin: 30px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 30px 50px;
-    max-width: 800px;
-}
-.host img{
-    width: 80px;
-    border-radius: 50%;
-    margin-right: 30px;
-}
-.host h2{
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-.host i{
-    color: #FCD12A;
-}
-.contact-host{
-    display: inline-block;
-    margin: 40px 0 40px 120px;
-    text-decoration: none;
+    z-index: 1;
     color: black;
-    padding: 15px 50px;
-    border: 1px solid #FCD12A;
-    border-radius: 8px;
+    font-size: 17px;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+.tab-wrapper nav label:hover{
+    background: var(--main-color2);
+}
+#lessor:checked ~ nav label.lessor,
+#tenant:checked ~ nav label.tenant{
+    color: black;
+}
+.tab-nav label i{
+    padding-right: 7px;
+}
+.tab-nav .slider{
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    left: 9%;
+    top: 40%;
+    bottom: 0;
+    z-index: 0;
+    border-radius: 5px;
+    background: var(--main-color2);
+    transition: all 0.3s ease;
+}
+input[type="radio"]{
+    display: none;
+}
+#tenant:checked ~ nav .slider{
+    left: 52%;
+}
+
+section .content{
+    display: none;
+    background: #fff;
+}
+#lessor:checked ~ section .content-1,
+#tenant:checked ~ section .content-2{
+    display: block;
+}
+section .content .title{
+    font-size: 21px;
+    font-weight: 500;
+    margin: 30px 0 10px 0;
+}
+section .content p{
+    text-align: justify;
 }
 
 
-
-
-
-/* ---------------------------for smallscreen devices------------------ */
-@media only screen and (max-width: 700px){
-
-    .logo{
-        position: fixed;
-        top: 4%;
-        left: 7%;
-    }
-    nav{
-        position: fixed;
-        top: 0;
-        z-index: 100;
-        display: inline-block;
-        width: 100%;
-        padding: 100px 7% 0;
-        background: black;
-        text-align: right;
-    }
-    nav .nav-links li{
-        margin: 10px 0;
-        display: block;
-    }
-    .login-btn button{
-        margin: 15px 0 30px;
-        display: inline-block;
-
-    }
-}

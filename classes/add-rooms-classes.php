@@ -1,12 +1,12 @@
 <?php
 class Addrooms extends Dbh{
 
-    protected function setRooms($unit_id, $room_number, $slots, $price, $status){
-        $result = $this->connect()->prepare("INSERT INTO rooms (unit_id, room_number, slots, price, status) VALUES (?,?,?,?,?);");
+    protected function setRooms($property_id, $room_number, $slots, $price){
+        $result = $this->connect()->prepare("INSERT INTO room (property_id, room_number, slots, price) VALUES (?,?,?,?);");
 
-        if(!$result->execute(array($unit_id, $room_number, $slots, $price, $status))){
+        if(!$result->execute(array($property_id, $room_number, $slots, $price))){
             $result = null;
-            header("Location: ../rooms.php?error=sqlfailede");
+            header("Location: ../rooms.php?error=sqlfail");
             exit();
         }
 

@@ -48,7 +48,7 @@ class Signin extends Dbh{
 
             session_start();
             $_SESSION['loggedin'] = true;
-            $_SESSION['tenantlogin'] = true;
+            $_SESSION['userlogin'] = true;
             $_SESSION['userid'] = $user[0]['id'];
             $_SESSION['username'] = $user[0]['username'];
         }

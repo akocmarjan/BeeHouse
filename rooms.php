@@ -1,7 +1,6 @@
 <?php
 // Initialize the session
 session_start();
-include('config.php');
 include('functions.php');
 
 // Check if the user is logged in, if not then redirect him to login page
@@ -10,7 +9,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-$unit = $table->getUnits($_SESSION['userid']);
+$property = $table->getProperty($_SESSION['partnerid']);
 
 ?>
 <!DOCTYPE html>
@@ -93,74 +92,93 @@ $unit = $table->getUnits($_SESSION['userid']);
 
         <main>
             <div class="units-grid">
-
-                
-                <!-- Add Room -->
-                <div class="forms-wrapper">
+                <div class="units-wrapper">
+                    <h2>Add Rooms</h2>
                     <form action="include/add-rooms-inc.php" id="postForm" method="post" enctype="multipart/form-data">
-                        <!-- <div class="container"> -->
-                            <h2>Add Rooms</h2>
-                            <input type="hidden" name="id">
-                            <div class="form-group">
-                                <label>Unit name</label>
+                        <div class="form-step form-step-active w3-animate-fading w3-animate-opacity">
+                            <h1>Room name</h1>
+                            <p class="p-med">Input a room name or room number to easily identify rooms.</p>
+                            <div class="input-group">
+                                <label for="propertyID">Property name</label>
                                 <div class="select">
-                                    <select name="unitID" id="select_cat">
-                                        <option selected disabled="">Choose unit name below</option>
+                                    <select name="propertyID" id="propertyID">
+                                        <option selected disabled="">Choose unit type below</option>
                                         <?php
-                                        // Fetch category
-                                        foreach($unit as $units){
-                                            echo "<option value='".$units['id']."' >".$units['name']."</option>";
+                                        foreach($property as $properties){
+                                            echo "<option value='".$properties['id']."' >".$properties['property_name']."</option>";
                                         }
                                         ?>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Room Number</label>
+                            <div class="input-group">
+                                 <label>Room number</label>
                                 <input type="text" name="roomNumber">
                             </div>
-                            <div class="form-group">
+                            <div class="">
+                                <a href="#" class="btn btn-next width-50 ml-auto"><span>Continue</span></a>
+                            </div>
+                            <hr class="line">
+                        </div>
+                        <div class="form-step w3-animate-right w3-animate-opacity">
+                            <h1>Room details</h1>
+                            <p class="p-med">How many guest can stay in this room?</p>
+                            <div class="input-group">
                                 <label>Slots</label>
                                 <input type="text" name="slots">
                             </div>
-                            <div class="form-group">
-                                <label>Price</label>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-prev"><span>Back</span></a>
+                                <a href="#" class="btn btn-next"><span>Continue</span></a>
+                            </div>
+                        </div>
+                        <div class="form-step w3-animate-right">
+                            <h1>Pricing</h1>
+                            <p class="p-med">Customer payment options</p>
+                            <div class="input-group">
+                                <label>Price / Guest</label>
                                 <input type="text" name="price">
                             </div>
-                            <div class="form-group">
-                                <label>Availability</label>
-                                <div class="select">
-                                    <select name="status" id="select_cat">
-                                        <option value="0">Unavailable</option>
-									    <option value="1">Available</option>
-                                    </select>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-prev"><span>Back</span></a>
+                                <a href="#" class="btn btn-next"><span>Continue</span></a>
+                            </div>
+                        </div>
+                        <div class="form-step w3-animate-right">
+                            <h1>Photos</h1>
+                            <p class="p-med">What does your room look like?</p>
+                            <div class="input-group">
+                                <label>Add atleast one photo now. You can always add more later.</label>
+                                <div class="cord">
+                                    <div class="top">
+                                        <p>Drag & drop image uploading</p>
+                                    </div>
+                                    <form action="/upload" class="upload_img">
+                                        <span class="inner">Drag & drop image here or <span class="selectt">Browse</span></span>
+                                        <input type="file" name="image[]" id="files" multiple>
+                                    </form>
+                                    <div class="containerr"></div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Upload Photo</label>
-                                <input type="file" name="image[]" id="files" multiple><br>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-prev"><span>Back</span></a>
+                                <button type="submit" name="submit" class="btn"><span>Add</span></button>
                             </div>
-                            <div class="form-group">
-                                <input name="submit" type="submit" class="btn btn-primary" value="Add Units"></input>
-                            </div>
-                            
-                        <!-- </div> -->
+                        </div>
+                       
                     </form>
                 </div>
-                <!-- Add Unit -->
-                
-                <!-- Added Units Table -->
-                <!-- <div class="recent-grid"> -->
+
                 <div class="units-wrapper">
 
                     <?php
-                    foreach($unit as $units){
+                    foreach($property as $properties){
                   
                     ?>
                         <div class="units">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><?php echo $units['name']?></h3>
+                                    <h3><?php echo $properties['property_name']?></h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -177,13 +195,13 @@ $unit = $table->getUnits($_SESSION['userid']);
                                             <tbody>
 
                                                 <?php
-                                                $room = $table->getRoom($units['id']);
+                                                $room = $table->getRoom($properties['id']);
                                                 foreach($room as $rooms){
                                                 ?>
                                                 <tr>
                                                     
                                                     <td class="text-center"><?php echo $rooms['room_number']?></td>
-                                                    <td class="text-center"><?php echo $rooms['tenants']?>/<?php echo $rooms['slots']?></td>
+                                                    <td class="text-center">0/<?php echo $rooms['slots']?></td>
                                                     <td class="text-center"><?php echo $rooms['price']?></td>
                                                     
                                                     <?php if($rooms['status'] == 1): ?>
@@ -221,7 +239,7 @@ $unit = $table->getUnits($_SESSION['userid']);
     
     
 </body>
-
+<script type="text/javascript" src="multi-step.js"></script>
 <!-- <script src="js-upload.js"></script> -->
 </html>
 

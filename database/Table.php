@@ -10,9 +10,9 @@ class Table{
 
     //fetch units data using getdata method
     public function getData(){
-        $result = $this->db->con->query("SELECT units.id, name, address, available_for, category_name, image_name FROM units, category, unit_images
-        WHERE units.category_id = category.id AND units.id = unit_images.unit_id
-        GROUP BY units.id");
+        $result = $this->db->con->query("SELECT property.id, property_name, barangay, available_for, category_name, image_name FROM property, category, unit_images
+        WHERE property.category_id = category.id AND property.id = unit_images.unit_id
+        GROUP BY property.id");
 
        $resultArray = array();
 
@@ -36,13 +36,27 @@ class Table{
        return $resultArray;;
     }
 
-    public function getDatawParam($unitID='21'){
-        $result = $this->db->con->query("SELECT name, address, available_for, category_name, username
-        FROM units 
+    public function getProperty($lessorid){
+        $result = $this->db->con->query("SELECT property.id, property_name, province, city, barangay, category_name
+        FROM property 
         LEFT JOIN category
-        ON units.category_id = category.id
+        ON property.category_id = category.id WHERE property.lessor_id = $lessorid");
+
+       $resultArray = array();
+
+       while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+           $resultArray[] = $item;
+       }
+       return $resultArray;;
+    }
+
+    public function getDatawParam($propertyID='21'){
+        $result = $this->db->con->query("SELECT property_name, barangay, available_for, category_name, username
+        FROM property 
+        LEFT JOIN category
+        ON property.category_id = category.id
         LEFT JOIN lessor
-        ON units.lessor_id = lessor.id WHERE units.id = $unitID");
+        ON property.lessor_id = lessor.id WHERE property.id = $propertyID");
 
        $resultArray = array();
 
@@ -52,8 +66,8 @@ class Table{
        return $resultArray;
     }
 
-    public function getRoom($unitID){
-        $result = $this->db->con->query("SELECT * FROM rooms WHERE unit_id = $unitID");
+    public function getRoom($propertyID){
+        $result = $this->db->con->query("SELECT * FROM room WHERE property_id = $propertyID");
 
        $resultArray = array();
 
@@ -75,8 +89,8 @@ class Table{
     }
 
     public function getCOUNT($lessorid){
-        $result = $this->db->con->query("SELECT COUNT(units.id)
-        FROM units
+        $result = $this->db->con->query("SELECT COUNT(property.id)
+        FROM property
         WHERE lessor_id = $lessorid");
 
         $resultArray = array();
@@ -87,18 +101,18 @@ class Table{
         return $resultArray;
     }
 
-    public function getSUM($lessorid){
-        $result = $this->db->con->query("SELECT SUM(tenants)
-        FROM units, rooms
-        WHERE units.id = rooms.unit_id AND units.lessor_id = $lessorid");
+    // public function getSUM($lessorid){
+    //     $result = $this->db->con->query("SELECT SUM(tenants)
+    //     FROM property, room
+    //     WHERE property.id = room.property_id AND property.lessor_id = $lessorid");
 
-        $resultArray = array();
+    //     $resultArray = array();
 
-        while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
-            $resultArray[] = $item;
-        }
-        return $resultArray;
-    }
+    //     while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+    //         $resultArray[] = $item;
+    //     }
+    //     return $resultArray;
+    // }
 
     public function getCategory(){
         $result = $this->db->con->query("SELECT * FROM category");
@@ -113,7 +127,7 @@ class Table{
 
     public function getApplication($id){
         $result = $this->db->con->query("SELECT name, address, room_number, price, applicants.status FROM applicants, units, rooms
-        WHERE rooms.unit_id = units.id AND applicants.room_id = rooms.id AND applicants.tenant_id = $id");
+        WHERE room.property_id = property.id AND applicants.room_id = room.id AND applicants.tenant_id = $id");
 
         $resultArray = array();
 
@@ -124,8 +138,8 @@ class Table{
     }
 
     public function getApplicants($id){
-        $result = $this->db->con->query("SELECT first_name, last_name, units.name, room_number, applicants.status FROM applicants, units, rooms, tenant
-        WHERE rooms.unit_id = units.id AND applicants.room_id = rooms.id AND applicants.tenant_id = tenant.id AND units.lessor_id = $id");
+        $result = $this->db->con->query("SELECT first_name, last_name, property_name, room_number, applicants.status FROM applicants, property, room, tenant
+        WHERE room.property_id = property.id AND applicants.room_id = room.id AND applicants.tenant_id = tenant.id AND property.lessor_id = $id");
 
         $resultArray = array();
 

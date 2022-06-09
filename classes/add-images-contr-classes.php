@@ -4,16 +4,16 @@ class AddimagesContr extends Addimages{
 
     private $finalimg;
     private $creattime;
-    private $unit_id;
+    private $property_id;
 
-    public function __construct($finalimg, $creattime, $unit_id){
+    public function __construct($finalimg, $creattime, $property_id){
         $this->finalimg = $finalimg;
         $this->creattime = $creattime;
-        $this->unit_id = $unit_id;
+        $this->property_id = $property_id;
     }
 
     public function addImages(){
-        $this->setImages($this->finalimg, $this->creattime, $this->unit_id);
+        $this->setImages($this->finalimg, $this->creattime, $this->property_id);
     }
    
 }

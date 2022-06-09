@@ -19,36 +19,14 @@ $unit_shuffle = $table->getData();
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="style-search.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <nav id="navBar" class="navbar-white">
-    <a href="index.php"><img src="images/logo.png" class="logo"></a>
-    <ul class="nav-links">
-        <!-- <li><a href="#" class="active">Home</a></li> -->
-    </ul>
-    <div class="topright">
-        <?php
-            if(isset($_SESSION['userid'])){
-        ?>
-            <a href="profile_tenant.php">
-            <img src="images/user.png" width="30px" height="30px" alt="">
-            </a>
-            <div>
-                <h4><?php echo htmlspecialchars($_SESSION["username"]);?></h4>
-                <small>Bee</small>
-            </div>
-        <?php
-            }else{
-        ?>
-            <button id="show-login">Sign In</button>
-        <?php
-            }
-        ?>
-    </div>
-    </nav>
-    <div class="container">
+<body style="background-image:  linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),url(images/banner2.png);">
+    <?php include_once ('template.include/header.php') ?>
+    <?php include_once ('template.include/signin-popup.php') ?>
+    <!-- <div class="container">
         <div class="search-bar">
             <form>
                 <div class="location-input">
@@ -57,7 +35,7 @@ $unit_shuffle = $table->getData();
                 <button type="submit"><img src="images/search.png"></button>
             </form>
         </div>
-    </div>
+    </div> -->
     <div class="container">
         <div class="list-container">
             <div class="left-col">
@@ -71,8 +49,8 @@ $unit_shuffle = $table->getData();
                             <img src= <?php echo "imagess/".$listing['image_name'] ?>>
                         </div>
                         <div class="house-info">
-                            <p><?php echo $listing['category_name'] ?> in <?php echo $listing['address'] ?></p>
-                            <h3><?php echo $listing['name'] ?></h3>
+                            <p><?php echo $listing['category_name'] ?> in <?php echo $listing['barangay'] ?></p>
+                            <h3><?php echo $listing['property_name'] ?></h3>
                             <h4><?php if($listing['available_for'] == 1){
                                 echo "Male Only";
                             }elseif($listing['available_for'] == 0){
@@ -94,86 +72,6 @@ $unit_shuffle = $table->getData();
                 </a>
                 <hr class="line">
                 <?php } ?>
-                <!-- <hr class="line">
-                <div class="house">
-                    <div class="house-img">
-                        <img src="images/house-2.png">
-                    </div>
-                    <div class="house-info">
-                        <p>Boarding House in San Miguel</p>
-                        <h3>Deluxe Queen Room</h3>
-                        <p>1 Bedroom/1 Bathroom</p>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                        <div class="house-price">
-                            <p>1 Person</p>
-                            <h4>$1,200<span> / Month</span></h4>
-                        </div>
-                    </div>
-                </div>
-                <hr class="line">
-                <div class="house">
-                    <div class="house-img">
-                        <img src="images/house-3.png">
-                    </div>
-                    <div class="house-info">
-                        <p>Boarding House in San Miguel</p>
-                        <h3>Deluxe Queen Room</h3>
-                        <p>1 Bedroom/1 Bathroom</p>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                        <div class="house-price">
-                            <p>1 Person</p>
-                            <h4>$1,200<span> / Month</span></h4>
-                        </div>
-                    </div>
-                </div>
-                <hr class="line">
-                <div class="house">
-                    <div class="house-img">
-                        <img src="images/house-4.png">
-                    </div>
-                    <div class="house-info">
-                        <p>Boarding House in San Miguel</p>
-                        <h3>Deluxe Queen Room</h3>
-                        <p>1 Bedroom/1 Bathroom</p>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                        <div class="house-price">
-                            <p>1 Person</p>
-                            <h4>$1,200<span> / Month</span></h4>
-                        </div>
-                    </div>
-                </div>
-                <hr class="line">
-                <div class="house">
-                    <div class="house-img">
-                        <img src="images/house-5.png">
-                    </div>
-                    <div class="house-info">
-                        <p>Boarding House in San Miguel</p>
-                        <h3>Deluxe Queen Room</h3>
-                        <p>1 Bedroom/1 Bathroom</p>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                        <div class="house-price">
-                            <p>1 Person</p>
-                            <h4>$1,200<span> / Month</span></h4>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <div class="right-col">
                 <div class="sidebar">
@@ -222,20 +120,9 @@ $unit_shuffle = $table->getData();
             
         </div>
 
-
-
-
-
-
-
-        <div class="footer">
-            <a href="https://facebook.com/"><i class="fab fa-facebook-square"></i></a>
-            <a href="https://facebook.com/"><i class="fab fa-instagram-square"></i></a>
-            <a href="https://facebook.com/"><i class="fab fa-youtube-square"></i></a>
-            <a href="https://facebook.com/"><i class="fab fa-twitter-square"></i></a>
-            <hr>
-            <p>Copyright © 2021, Bee House</p>
-        </div>
+        
     </div>
+    <?php include_once ('template.include/footer.php') ?>
+    <script src="javascript.js"></script>
 </body>
 </html>

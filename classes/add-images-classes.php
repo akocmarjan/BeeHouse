@@ -1,12 +1,12 @@
 <?php
 class Addimages extends Dbh{
 
-    protected function setImages($finalimg, $creattime, $unit_id){
+    protected function setImages($finalimg, $creattime, $property_id){
         $result = $this->connect()->prepare("INSERT INTO unit_images ( `image_name`, `image_createtime`,`unit_id`) VALUES (?,?,?);");
 
-        if(!$result->execute(array($finalimg, $creattime, $unit_id))){
+        if(!$result->execute(array($finalimg, $creattime, $property_id))){
             $result = null;
-            header("Location: ../rooms.php?error=sqlfailede");
+            header("Location: ../rooms.php?error=sqlfailedeimage");
             exit();
         }
 

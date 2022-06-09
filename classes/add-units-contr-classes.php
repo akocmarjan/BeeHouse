@@ -2,16 +2,24 @@
 
 class AddunitsContr extends Addunits{
 
-    private $unit_name;
+    private $property_name;
     private $category_id;
-    private $address;
+    private $region;
+    private $province;
+    private $city;
+    private $barangay;
+    private $postal;
     private $lessor_id;
     private $available_for;
 
-    public function __construct($unit_name, $category_id, $address, $lessor_id, $available_for){
-        $this->unit_name = $unit_name;
+    public function __construct($property_name, $category_id, $region, $province, $city, $barangay, $postal, $lessor_id, $available_for){
+        $this->property_name = $property_name;
         $this->category_id = $category_id;
-        $this->address = $address;
+        $this->region = $region;
+        $this->province = $province;
+        $this->city = $city;
+        $this->barangay = $barangay;
+        $this->postal = $postal;
         $this->lessor_id = $lessor_id;
         $this->available_for = $available_for;
     }
@@ -23,12 +31,12 @@ class AddunitsContr extends Addunits{
             exit();
         }
 
-        $this->setUnits($this->unit_name, $this->category_id, $this->address, $this->lessor_id, $this->available_for);
+        $this->setUnits($this->property_name, $this->category_id, $this->region, $this->province, $this->city, $this->barangay, $this->postal, $this->lessor_id, $this->available_for);
     }
 
     private function emptyInput(){
         $result;
-        if(empty($this->unit_name) || empty($this->category_id) || empty($this->address) || empty($this->available_for)){
+        if(empty($this->property_name) || empty($this->category_id) || empty($this->barangay) || empty($this->available_for)){
             $result = false;
         }else{
             $result = true;

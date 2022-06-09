@@ -584,3 +584,156 @@ select{
 
 
 
+/* global styling */
+label{
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+input{
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+
+
+
+/* progressbar */
+.progressbar{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+.progressbar::before, .progress{
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+    z-index: -1;
+    
+}
+.progress{
+    background-color: var(--color-dark);
+    width: 0%;
+}
+.progress-step{
+    width: 35px;
+    height: 35px;
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.progress-step::after{
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    font-size: 0.85rem;
+    color: #222   ;
+}
+.progress-step-active{
+    background-color: var(--color-dark);
+    color: #f3f3f3;
+}
+
+
+
+
+
+/* form */
+.form{
+    width: clamp(410px, 30%, 430px);
+    margin: 0 auto;
+    border-radius: 0.35rem;
+    padding: 1.5rem;
+    background: #f1f5f9;
+}
+.form-step{
+    display: none;
+}
+.form-step-active{
+    display: block;
+}
+.input-group{
+    margin: 0.5rem 0;
+}
+
+
+/* button */
+button{
+    border-style: none;
+    font-size: 16px;
+}
+
+.btn-group{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+.btn-group2{
+    display: grid;
+    gap: 1.5rem;
+}
+.btn{
+    padding: 0.75rem;
+    display: block;
+    text-decoration: none;
+    background-color: var(--main-color);
+    text-align: center;
+    color: #222;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.btn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn:hover span {
+    padding-right: 25px;
+}
+
+.btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+/* hr{
+    margin: 1.5rem 0;
+    background-color: #222;
+} */
+.p-small{
+    font-size: 14px;
+    margin: 0.5rem 0;
+}
+.p-med{
+    font-size: 16px;
+    margin: 0.5rem 0;
+}
+.foot{
+    text-align: center;
+}
+.p-small-nm{
+    font-size: 14px;
+}
+

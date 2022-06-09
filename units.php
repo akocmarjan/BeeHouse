@@ -1,7 +1,6 @@
 <?php
 // Initialize the session
 session_start();
-include('config.php');
 include('functions.php');
 
 // Check if the user is logged in, if not then redirect him to login page
@@ -10,8 +9,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-$unit = $table->getUnits($_SESSION['userid']);
+$property = $table->getProperty($_SESSION['partnerid']);
 $category = $table->getCategory();
+
+
 
 ?>
 <!DOCTYPE html>
@@ -25,37 +26,6 @@ $category = $table->getCategory();
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
     
-    <!-- <script type="text/javascript">
-        $(document).ready(function(){
-
-            $("#select_cat").change(function(){
-                var deptid = $(this).val();
-
-                $.ajax({
-                    url: 'getUsers.php',
-                    type: 'post',
-                    data: {depart:deptid},
-                    dataType: 'json',
-                    success:function(response){
-
-                        var len = response.length;
-
-                        $("#sel_user").empty();
-                        for( var i = 0; i<len; i++){
-                            var id = response[i]['id'];
-                            var name = response[i]['name'];
-
-                            $("#sel_user").append("<option value='"+id+"'>"+name+"</option>");
-
-                        }
-                    }
-                });
-            });
-
-            });
-    </script> -->
-    
-
 </head>
 <body>
     <input type="checkbox"  id="nav-toggle">
@@ -131,15 +101,17 @@ $category = $table->getCategory();
                 
                 <!-- Add Unit -->
                 <div class="units-wrapper">
+                    <h2>Add Property</h2>
                     <form action="include/add-units-inc.php" id="postForm" method="post" enctype="multipart/form-data">
-                        <!-- <div class="container"> -->
-                            <h2>Add Units</h2>
-                            <div class="form-group">
-                                <label>Unit Name</label>
-                                <input type="text" name="unitName" id="unit_name">
+                        <div class="form-step form-step-active w3-animate-fading w3-animate-opacity">
+                            <h1>Name and Type</h1>
+                            <p class="p-med">What is the name of your property?</p>
+                            <div class="input-group">
+                                <label for="propertyName">Property name</label>
+                                <input type="text" name="propertyName" id="propertyName">
                             </div>
-                            <div class="form-group">
-                                <label>Category Type</label>
+                            <div class="input-group">
+                                <label for="property_name">Property type</label>
                                 <div class="select">
                                     <select name="categoryID" id="select_cat">
                                         <option selected disabled="">Choose unit type below</option>
@@ -151,11 +123,75 @@ $category = $table->getCategory();
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="text" name="address">
+                            <div class="">
+                                <a href="#" class="btn btn-next width-50 ml-auto"><span>Continue</span></a>
                             </div>
-                            <div class="form-group">
+                            <hr class="line">
+                        </div>
+                        <div class="form-step w3-animate-right w3-animate-opacity">
+                            <h1>Location</h1>
+                            <p class="p-med">Where is your property located?</p>
+                            <div class="input-group">
+                                <label>Region</label>
+                                <input type="hidden" name="regionSelected"/>
+                                <div class="select">
+                                    <select name="region" id="region">
+                                        <option selected disabled="">Choose below</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Province</label>
+                                <input type="hidden" name="provinceSelected"/>
+                                <div class="select">
+                                    <select name="province" id="province">
+                                        <option selected disabled="">Choose below</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>City</label>
+                                <input type="hidden" name="citySelected"/>
+                                <div class="select">
+                                    <select name="city" id="city">
+                                        <option selected disabled="">Choose below</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Barangay</label>
+                                <input type="hidden" name="barangaySelected"/>
+                                <div class="select">
+                                    <select name="barangay" id="barangay">
+                                        <option selected disabled="">Choose below</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Postal Code</label>
+                                <input type="text" name="postal">
+                            </div>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-prev"><span>Back</span></a>
+                                <a href="#" class="btn btn-next"><span>Continue</span></a>
+                            </div>
+                        </div>
+                        <div class="form-step w3-animate-right">
+                            <h1>Map</h1>
+                            <p class="p-med">Set location on the map.</p>
+                            <div class="input-group">
+                                <label>Pinpoint your property</label>
+                                <div id="googleMap" style="width:320px;height:450px;"></div>
+                            </div>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-prev"><span>Back</span></a>
+                                <a href="#" class="btn btn-next"><span>Continue</span></a>
+                            </div>
+                        </div>
+                        <div class="form-step w3-animate-right">
+                            <h1>Criteria</h1>
+                            <p class="p-med">Who can lease here?</p>
+                            <div class="input-group">
                                 <label>Available for</label>
                                 <div class="select">
                                     <select name="availableFor" id="select_cat">
@@ -166,11 +202,11 @@ $category = $table->getCategory();
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <input name="submit" type="submit" class="btn btn-primary" value="Add Units"></input>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-prev"><span>Back</span></a>
+                                <button type="submit" name="submit" class="btn"><span>Add</span></button>
                             </div>
-                            
-                        <!-- </div> -->
+                        </div>
                     </form>
                 </div>
                 <!-- Add Unit -->
@@ -198,13 +234,13 @@ $category = $table->getCategory();
                                         <tbody>
                                             <?php
                                             // Fetch category
-                                            foreach($unit as $units){
+                                            foreach($property as $properties){
                                             ?>
                                             <tr>
-                                                <td class="text-center"><?php echo $units['name']?></td>
-                                                <td class="text-center"><?php echo $units['category_name']?></td>
-                                                <td class="text-center"><?php echo $units['address']?></td>
-                                                <td class="text-center"><?php?></td>
+                                                <td class="text-center"><?php echo $properties['property_name']?></td>
+                                                <td class="text-center"><?php echo $properties['category_name']?></td>
+                                                <td class="text-center"><?php echo $properties['barangay'].", ".$properties['city'].", ".$properties['province']?></td>
+                                                <td class="text-center"></td>
                                                 <td class="text-center">
                                                     <button class="edit_room" type="button">Edit</button>
                                                     <button class="delete_cat" type="button">Delete</button>
@@ -224,10 +260,79 @@ $category = $table->getCategory();
             </div>
         </main>
     </div>
-<!-- <script type="text/javascript" src="jquery-3.6.0.min.js"></script> -->
+<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="multi-step.js"></script>
+<script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script>
 
 </body>
-
-<!-- <script src="js-upload.js"></script> -->
 </html>
+<script>
+    function myMap() {
+    var mapProp= {
+    center:new google.maps.LatLng(13.425138, 123.416348),
+    zoom:15,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    }
 
+    $(document).ready(function(){
+        var my_handlers = {
+
+        fill_provinces:  function(){
+
+            var region_code = $(this).val();
+            $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
+
+            var selected_caption = $("#region option:selected").text();
+            $('input[name=regionSelected]').val(selected_caption);
+        },
+
+        fill_cities: function(){
+
+            var province_code = $(this).val();
+            $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
+
+            var selected_caption = $("#province option:selected").text();
+            $('input[name=provinceSelected]').val(selected_caption);
+        },
+
+
+        fill_barangays: function(){
+
+            var city_code = $(this).val();
+            $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
+
+            var selected_caption = $("#city option:selected").text();
+            $('input[name=citySelected]').val(selected_caption);
+        },
+
+        fill: function(){
+
+            var selected_caption = $("#barangay option:selected").text();
+            $('input[name=barangaySelected]').val(selected_caption);
+        }
+        };
+
+        $(function(){
+            $('#region').on('change', my_handlers.fill_provinces);
+            $('#province').on('change', my_handlers.fill_cities);
+            $('#city').on('change', my_handlers.fill_barangays);
+            $('#barangay').on('change', my_handlers.fill);
+
+            $('#region').ph_locations({'location_type': 'regions'});
+            $('#province').ph_locations({'location_type': 'provinces'});
+            $('#city').ph_locations({'location_type': 'cities'});
+            $('#barangay').ph_locations({'location_type': 'barangays'});
+
+            $('#region').ph_locations('fetch_list');
+
+            
+        });
+
+        
+
+        
+
+    });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2sNcPDWAoQvjzAITWb0p4J03SBSNnGmA&callback=myMap"></script>
