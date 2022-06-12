@@ -66,6 +66,24 @@
                     </div>
                 </div>
             </section>
+            <?php if (isset($_SESSION['flash'])): ?>
+            <div class="error-handling">
+                    <?php if($_SESSION['flash'] == "emptyinput"){ ?>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Please fill out all the fields</p>
+                    <?php }elseif($_SESSION['flash'] == "usernotfound"){ ?>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Username or email not found.</p>
+                    <?php }else{ ?>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Wrong password</p>
+                    <?php } ?>
+                    <script>
+                        document.querySelector(".popup").classList.add("active");
+                        document.querySelector(".popup-bg").classList.add("active");
+                    </script>
+            </div>
+            <?php endif;  unset($_SESSION['flash']);?>
         </div>
     </div>
 </div>
