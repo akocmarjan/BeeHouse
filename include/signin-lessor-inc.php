@@ -13,6 +13,6 @@ if(isset($_POST['submit']))
 
     $signin->signinUser();
 
-    header("location: ../profile.php?error=none");
+    header("location: ../dashboard-partner-dashboard.php?error=none");
 }
 ?>

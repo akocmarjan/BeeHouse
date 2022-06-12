@@ -63,6 +63,15 @@
                         <input type="text" name="lastName" id="lastName">
                     </div>
                     <div class="input-group">
+                        <label>Gender</label>
+                        <div class="select">
+                            <select name="gender" id="gender">
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
                         <label for="phone">Phone number</label>
                         <input type="text" name="phone" id="phone">
                     </div>

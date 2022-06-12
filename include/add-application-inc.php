@@ -4,13 +4,13 @@ if(isset($_POST['submit']))
 {
 
     $room_id = $_POST['room_id'];
-	$tenant_id = htmlspecialchars($_SESSION['userid']);
+	$user_id = htmlspecialchars($_SESSION['userid']);
 
     include '../classes/dbh-classes.php';
     include '../classes/add-application-classes.php';
     include '../classes/add-application-contr-classes.php';
 
-    $addapplication = new AddapplicationContr($room_id, $tenant_id);
+    $addapplication = new AddapplicationContr($room_id, $user_id);
 
     $addapplication->addApplication();
 

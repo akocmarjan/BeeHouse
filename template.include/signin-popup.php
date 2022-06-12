@@ -28,8 +28,8 @@
                                 
                             </div>
                             <div class="form-element">
-                                <input type="checkbox" id="remember-me">
-                                <label for="remember-me">Remember me</label>
+                                <input type="checkbox" id="remember-me-partner">
+                                <label for="remember-me-partner">Remember me</label>
                             </div>
                             <div class="form-element">
                                 <input type="submit" name="submit" class="btn btn-primary" value="Login">
@@ -53,8 +53,8 @@
                                 <input type="password" name="password" placeholder="Enter password" class="form-control">
                             </div>
                             <div class="form-element">
-                                <input type="checkbox" id="remember-me">
-                                <label for="remember-me">Remember me</label>
+                                <input type="checkbox" id="remember-me-user">
+                                <label for="remember-me-user">Remember me</label>
                             </div>
                             <div class="form-element">
                                 <input type="submit" name="submit" class="btn btn-primary" value="Login">

@@ -2,7 +2,7 @@
 class Signin extends Dbh{
 
     protected function getUser($username, $password){
-        $result = $this->connect()->prepare("SELECT password FROM tenant WHERE username = ? OR email = ?;");
+        $result = $this->connect()->prepare("SELECT password FROM user WHERE username = ? OR email = ?;");
 
         if(!$result->execute(array($username, $password))){
             $result = null;
@@ -24,7 +24,7 @@ class Signin extends Dbh{
             header("Location: ../index.php?error=wrongpassword");
             exit();
         }elseif($checkPwd == true){
-            $result = $this->connect()->prepare("SELECT * FROM tenant WHERE username = ? OR email = ? AND password = ?;");
+            $result = $this->connect()->prepare("SELECT * FROM user WHERE username = ? OR email = ? AND password = ?;");
 
             if(!$result->execute(array($username, $username, $password))){
                 $result = null;

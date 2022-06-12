@@ -41,7 +41,7 @@ if(isset($_POST['submit']))
 
 		}else
 		{
-			header("location: ../rooms.php?error=imgerror");
+			header("location: ../dashboard-partner-rooms.php?error=imgerror");
 		}
 	}
 
@@ -49,6 +49,6 @@ if(isset($_POST['submit']))
 
     $addrooms->addRooms();
 
-    header("location: ../rooms.php?error=none");
+    header("location: ../dashboard-partner-rooms.php?error=none");
 }
 ?>

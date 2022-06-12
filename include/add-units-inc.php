@@ -10,7 +10,7 @@ if(isset($_POST['submit']))
     $city = $_POST['citySelected'];
     $barangay = $_POST['barangaySelected'];
     $postal = $_POST['postal'];
-    $lessor_id = htmlspecialchars($_SESSION['userid']);
+    $lessor_id = htmlspecialchars($_SESSION['partnerid']);
     $available_for = $_POST['availableFor'];
    
     include '../classes/dbh-classes.php';
@@ -21,6 +21,6 @@ if(isset($_POST['submit']))
 
     $addunits->addUnits();
 
-    header("location: ../units.php?error=none");
+    header("location: ../dashboard-partner-property.php?error=none");
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-class AddapplicationContr extends Addapplication{
+class AddtenantContr extends Addtenant{
 
     private $room_id;
     private $user_id;
@@ -10,19 +10,19 @@ class AddapplicationContr extends Addapplication{
         $this->user_id = $user_id;
     }
 
-    public function addApplication(){
-        if($this->applicationCheck() == false){
+    public function addTenant(){
+        if($this->tenantCheck() == false){
             // echo "Already applied!";
             header("location: ../listing.php?error=alreadyapplied");
             exit();
         }
 
-        $this->setApplication($this->room_id, $this->user_id);
+        $this->setTenant($this->room_id, $this->user_id);
     }
 
-    private function applicationCheck(){
+    private function tenantCheck(){
         $result;
-        if(!$this->checkUser($this->user_id, $this->room_id)){
+        if(!$this->checkTenant($this->user_id, $this->room_id)){
             $result = false;
         }else{
             $result = true;

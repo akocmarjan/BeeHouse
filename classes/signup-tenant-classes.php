@@ -1,10 +1,10 @@
 <?php
 class Signup extends Dbh{
 
-    protected function setUser($username, $email, $firstname, $lastname, $phone, $hashed_password){
-        $result = $this->connect()->prepare("INSERT INTO tenant (username, email, first_name, last_name, phone, password) VALUES (?,?,?,?,?,?);");
+    protected function setUser($username, $email, $firstname, $lastname, $gender, $phone, $hashed_password){
+        $result = $this->connect()->prepare("INSERT INTO user (username, email, first_name, last_name, gender, phone, password) VALUES (?,?,?,?,?,?,?);");
 
-        if(!$result->execute(array($username, $email, $firstname, $lastname, $phone, $hashed_password))){
+        if(!$result->execute(array($username, $email, $firstname, $lastname, $gender, $phone, $hashed_password))){
             $result = null;
             header("Location: ../index.php?error=sqlfailed");
             exit();
@@ -14,7 +14,7 @@ class Signup extends Dbh{
     }
 
     protected function checkUser($username, $email){
-        $result = $this->connect()->prepare("SELECT username FROM tenant WHERE username = ? OR email = ?;");
+        $result = $this->connect()->prepare("SELECT username FROM user WHERE username = ? OR email = ?;");
 
         if(!$result->execute(array($username, $email))){
             $result = null;

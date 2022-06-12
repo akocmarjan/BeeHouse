@@ -2,6 +2,12 @@
     <nav id="navBar" class="navbar-white">
         <a href="index.php"><img src="images/logo.png" class="logo"></a>
         <ul class="nav-links">
+            <form action="" class="sm-search-bar">
+                <input class="sm-search-input" type="search" name="search" pattern=".*\S.*" required>
+                <button class="sm-search-btn" type="submit">
+                    <span>Search</span>
+                </button>
+            </form>
         </ul>
         <div class="topright">
             <?php
@@ -9,15 +15,24 @@
             ?>
                 <div class="user-wrapper">
                     <?php if(isset($_SESSION['partnerlogin']) == true){ ?>
-                            <a href="profile.php">
+                            <a href="dashboard-partner-dashboard.php">
+                                <button class="btn-dashboard">Dashboard</button>
+                            </a>
+                            
                     <?php
                         }elseif(isset($_SESSION['userlogin']) == true){ ?>
                             <a href="profile_tenant.php">
+                                <button class="btn-dashboard">Dashboard</button>
+                            </a>
                     <?php
                         } 
                     ?>
-                        <img src="images/user.png" width="30px" height="30px" alt="">
-                    </a>
+                        <div class="dropdown-menu">
+                            <img src="images/user.png" width="30px" height="30px" alt="">
+                            <div class="dropdown-content">
+                                <a href="logout.php">Logout</a>
+                            </div>
+                        </div>
                     <div>
                         <h4><?php echo htmlspecialchars($_SESSION["username"]);?></h4>
                         <small>Worker bee</small>
@@ -26,7 +41,7 @@
             <?php
                 }else{
             ?>
-                <button id="show-login">Sign In</button>
+                <button class="btn-login" id="show-login">Sign In</button>
             <?php
                 }
             ?>

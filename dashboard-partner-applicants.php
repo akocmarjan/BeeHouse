@@ -2,7 +2,7 @@
 session_start();
 include('functions.php');
 
-$applicant = $table->getApplicants($_SESSION['userid']);
+$applicant = $table->getApplicants($_SESSION['partnerid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,28 +21,24 @@ $applicant = $table->getApplicants($_SESSION['userid']);
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="profile.php" ><span class="fas fa-tachometer-alt"></span>
+                    <a href="dashboard-partner-dashboard.php" ><span class="fas fa-tachometer-alt"></span>
                     <span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-users"></span>
+                    <a href="dashboard-partner-tenants.php"><span class="fas fa-users"></span>
                     <span>Tenants</span></a>
                 </li>
                 <li>
-                    <a href="units.php" class=""><span class="fas fa-home"></span>
-                    <span>Units</span></a>
+                    <a href="dashboard-partner-property.php"><span class="fas fa-home"></span>
+                    <span>Property</span></a>
                 </li>
                 <li>
-                    <a href="rooms.php"><span class="fas fa-door-open"></span>
+                    <a href="dashboard-partner-rooms.php"><span class="fas fa-door-open"></span>
                     <span>Rooms</span></a>
                 </li>
                 <li>
-                    <a href="dashboard-applicants.php" class="active"><span class="fas fa-file-alt"></span>
+                    <a href="dashboard-partner-applicants.php" class="active"><span class="fas fa-file-alt"></span>
                     <span>Applicants</span></a>
-                </li>
-                <li>
-                    <a href=""><span class="fas fa-receipt"></span>
-                    <span>Inventory</span></a>
                 </li>
                 <li>
                     <a href=""><span class="fas fa-user-circle"></span>
@@ -61,9 +57,10 @@ $applicant = $table->getApplicants($_SESSION['userid']);
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
+                    Applicants
                 </label>
 
-                Dashboard
+                
             </h2>
 
             <div class="search-wrapper">
@@ -81,7 +78,7 @@ $applicant = $table->getApplicants($_SESSION['userid']);
         </header>
 
         <main>
-        <div class="recent-grid">
+            <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
@@ -104,29 +101,42 @@ $applicant = $table->getApplicants($_SESSION['userid']);
                                         <?php foreach($applicant as $applicants){ ?>
                                         <tbody>
                                             <td><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
-                                            <td></td>
-                                            <td><?php echo $applicants['name'] ?></td>
+                                            <td><?php if($applicants['gender'] == 1){
+                                                echo "Male";
+                                            }else{
+                                                echo "Female";
+                                            } ?></td>
+                                            <td><?php echo $applicants['property_name'] ?></td>
                                             <td><?php echo $applicants['room_number'] ?></td>
                                             <?php if($applicants['status'] == 0): ?>
                                             <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
                                             <?php else: ?>
                                             <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
                                             <?php endif; ?>
-                                            <td class="text-center">
-                                                <button class="delete_cat" type="button">Approve</button>
-                                                <button class="delete_cat" type="button">Cancel</button>
-                                            </td>
+                                            <form action="include/delete-application-inc.php" method="post">
+                                                <td class="text-center">
+                                                    <input type="hidden" name="application_id" value=<?php echo $applicants['applicants_id'] ?>>
+                                                    <button class="cd-popup-trigger action button-approve" type="button">Approve</button>
+                                                    <button class="action button-cancel" name="submit" type="submit">Reject</button>
+                                                </td>
+                                            </form>
                                             <td><?php  ?></td>
-                                        <!-- <tr>
-                                            <td>Marjan B. Carullo</td>
-                                            <td>Male</td>
-                                            <td>22</td>
-                                            <td>
-                                                <span class="status purple"></span>
-                                                review
-                                            </td>
-                                        </tr> -->
                                         </tbody>
+                                        <form action="include/add-tenant-inc.php" method="post">
+                                            <div class="cd-popup" role="alert">
+                                                <div class="cd-popup-container">
+                                                    <p>Are you sure you want to accept?</p>
+                                                    <ul class="cd-buttons" style="list-style: none;">
+                                                        <input type="hidden" name="application_id" value=<?php echo $applicants['applicants_id'] ?>>
+                                                        <input type="hidden" name="room_id" value=<?php echo $applicants['room_id'] ?>>
+                                                        <input type="hidden" name="user_id" value=<?php echo $applicants['user_id'] ?>>
+                                                        <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
+                                                        <li><input type="button" class="cd-button-no" value="No"></input></li>
+                                                    </ul>
+                                                    <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <?php } ?>
                                 </table>
                             </div>
@@ -136,5 +146,7 @@ $applicant = $table->getApplicants($_SESSION['userid']);
             </div>
         </main>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>

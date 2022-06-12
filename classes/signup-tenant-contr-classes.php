@@ -6,16 +6,18 @@ class SignupContr extends Signup{
     private $username;
     private $firstname;
     private $lastname;
+    private $gender;
     private $phone;
     private $password;
     private $con_password;
     private $hashed_password;
 
-    public function __construct($username, $email, $password, $con_password, $firstname, $lastname, $phone, $hashed_password){
+    public function __construct($username, $email, $password, $con_password, $firstname, $lastname, $gender, $phone, $hashed_password){
         $this->username = $username;
         $this->email = $email;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
+        $this->gender = $gender;
         $this->phone = $phone;
         $this->password = $password;
         $this->con_password = $con_password;
@@ -49,7 +51,7 @@ class SignupContr extends Signup{
             exit();
         }
 
-        $this->setUser($this->username, $this->email, $this->firstname, $this->lastname, $this->phone, $this->hashed_password);
+        $this->setUser($this->username, $this->email, $this->firstname, $this->lastname, $this->gender, $this->phone, $this->hashed_password);
     }
 
     private function emptyInput(){

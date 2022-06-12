@@ -4,12 +4,13 @@ session_start();
 // include('config.php');
 require ('functions.php');
 // Check if the user is logged in, if not then redirect him to login page
-// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-//     header("location: index.php");
-//     exit;
-// }
-//$unit = $table->getTotalTenantUnits($_SESSION['userid']);
-//$sum = $table->getSUM($_SESSION['userid']);
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: index.php");
+    exit;
+}
+
+// $sum = $table->getSUM($_SESSION['userid']);
+
 $count = $table->getCOUNT($_SESSION['partnerid']);
 $applicant = $table->getApplicants($_SESSION['partnerid']);
 ?>
@@ -30,28 +31,24 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="profile.php" class="active"><span class="fas fa-tachometer-alt"></span>
+                    <a href="dashboard-partner-dashboard.php" class="active"><span class="fas fa-tachometer-alt"></span>
                     <span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-users"></span>
+                    <a href="dashboard-partner-tenants.php"><span class="fas fa-users"></span>
                     <span>Tenants</span></a>
                 </li>
                 <li>
-                    <a href="units.php"><span class="fas fa-home"></span>
-                    <span>Units</span></a>
+                    <a href="dashboard-partner-property.php"><span class="fas fa-home"></span>
+                    <span>Property</span></a>
                 </li>
                 <li>
-                    <a href="rooms.php" class=""><span class="fas fa-door-open"></span>
+                    <a href="dashboard-partner-rooms.php"><span class="fas fa-door-open"></span>
                     <span>Rooms</span></a>
                 </li>
                 <li>
-                    <a href="dashboard-applicants.php"><span class="fas fa-file-alt"></span>
+                    <a href="dashboard-partner-applicants.php"><span class="fas fa-file-alt"></span>
                     <span>Applicants</span></a>
-                </li>
-                <li>
-                    <a href=""><span class="fas fa-receipt"></span>
-                    <span>Inventory</span></a>
                 </li>
                 <li>
                     <a href=""><span class="fas fa-user-circle"></span>
@@ -70,9 +67,9 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
+                    Dashboard
                 </label>
-
-                Dashboard
+                
             </h2>
 
             <div class="search-wrapper">
@@ -91,8 +88,6 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
 
         <main>
             <?php
-            // Fetch category
-        //    foreach($sum as $sums){}
            foreach($count as $counts){}
             ?>
             <div class="cards">
@@ -165,15 +160,6 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                                         <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
                                         <?php endif; ?>
                                         <td><?php  ?></td>
-                                    <!-- <tr>
-                                        <td>Marjan B. Carullo</td>
-                                        <td>Male</td>
-                                        <td>22</td>
-                                        <td>
-                                            <span class="status purple"></span>
-                                            review
-                                        </td>
-                                    </tr> -->
                                     </tbody>
                                     <?php } ?>
                                 </table>

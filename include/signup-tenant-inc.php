@@ -6,6 +6,7 @@ if(isset($_POST['submit']))
     $username = $_POST['username'];
     $firstname = $_POST['firstName'];
     $lastname = $_POST['lastName'];
+    $gender = $_POST['gender'];
     $phone = $_POST['phone'];
     $password = $_POST['password'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -15,10 +16,10 @@ if(isset($_POST['submit']))
     include '../classes/signup-tenant-classes.php';
     include '../classes/signup-tenant-contr-classes.php';
 
-    $signup = new SignupContr($username, $email, $password, $con_password, $firstname, $lastname, $phone, $hashed_password);
+    $signup = new SignupContr($username, $email, $password, $con_password, $firstname, $lastname, $gender,$phone, $hashed_password);
 
     $signup->signupUser();
 
-    header("location: ../index.php?error=none");
+    header("location: ../listing.php?error=none");
 }
 ?>

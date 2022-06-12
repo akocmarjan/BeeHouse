@@ -74,7 +74,7 @@ session_start();
             <?php
             ?>
             <div class="cards">
-                <div class="card-single">
+                <!-- <div class="card-single">
                     <div>
                         <h1>$25000/Month</h1>
                         <span>Due Amount</span>
@@ -82,7 +82,7 @@ session_start();
                     <div>
                         <span class="fas fa-google-wallet"></span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </main>
     </div>

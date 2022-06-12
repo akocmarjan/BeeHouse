@@ -95,8 +95,8 @@ $application = $table->getApplication($_SESSION['userid']);
                                     </thead>
                                         <?php foreach($application as $applications){ ?>
                                         <tbody>
-                                            <td><?php echo $applications['name'] ?></td>
-                                            <td><?php echo $applications['address'] ?></td>
+                                            <td><?php echo $applications['property_name'] ?></td>
+                                            <td><?php echo $applications['barangay'].", ".$applications['city'] ?></td>
                                             <td><?php echo $applications['room_number'] ?></td>
                                             <td><?php echo $applications['price'] ?></td>
                                             <?php if($applications['status'] == 0): ?>
@@ -105,19 +105,23 @@ $application = $table->getApplication($_SESSION['userid']);
                                             <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
                                             <?php endif; ?>
                                             <td class="text-center">
-                                                <button class="delete_cat" type="button">Cancel</button>
+                                                <button class="cd-popup-trigger action button-cancel" type="button">Cancel</button>
                                             </td>
                                             <td><?php  ?></td>
-                                        <!-- <tr>
-                                            <td>Marjan B. Carullo</td>
-                                            <td>Male</td>
-                                            <td>22</td>
-                                            <td>
-                                                <span class="status purple"></span>
-                                                review
-                                            </td>
-                                        </tr> -->
                                         </tbody>
+                                        <form action="include/delete-application-inc.php" method="post">
+                                            <div class="cd-popup" role="alert">
+                                                <div class="cd-popup-container">
+                                                    <p>Are you sure you want cancel?</p>
+                                                    <ul class="cd-buttons" style="list-style: none;">
+                                                        <input type="hidden" name="application_id" value=<?php echo $applications['id'] ?>>
+                                                        <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
+                                                        <li><input type="button" class="cd-button-no" value="No"></input></li>
+                                                    </ul>
+                                                    <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <?php } ?>
                                 </table>
                             </div>
@@ -127,5 +131,7 @@ $application = $table->getApplication($_SESSION['userid']);
             </div>
         </main>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>

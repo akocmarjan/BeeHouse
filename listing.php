@@ -26,16 +26,7 @@ $unit_shuffle = $table->getData();
 <body style="background-image:  linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),url(images/banner2.png);">
     <?php include_once ('template.include/header.php') ?>
     <?php include_once ('template.include/signin-popup.php') ?>
-    <!-- <div class="container">
-        <div class="search-bar">
-            <form>
-                <div class="location-input">
-                    <input type="text" placeholder="Where are you going?">
-                </div>
-                <button type="submit"><img src="images/search.png"></button>
-            </form>
-        </div>
-    </div> -->
+   
     <div class="container">
         <div class="list-container">
             <div class="left-col">
@@ -49,7 +40,7 @@ $unit_shuffle = $table->getData();
                             <img src= <?php echo "imagess/".$listing['image_name'] ?>>
                         </div>
                         <div class="house-info">
-                            <p><?php echo $listing['category_name'] ?> in <?php echo $listing['barangay'] ?></p>
+                            <p><span><?php echo $listing['category_name'] ?></span> in <?php echo $listing['barangay'].", ".$listing['city'] ?></p>
                             <h3><?php echo $listing['property_name'] ?></h3>
                             <h4><?php if($listing['available_for'] == 1){
                                 echo "Male Only";
