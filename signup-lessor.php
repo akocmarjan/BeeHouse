@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +89,23 @@
                     </div>
                 </div>
                 <div class=foot>
+                    <?php if (isset($_SESSION['flash'])): ?>
+                    <div class="error-handling">
+                            <?php if($_SESSION['flash'] == "emptyinput"){ ?>
+                                <p><i class="fas fa-exclamation-circle"></i> Please fill out all the fields.</p>
+                            <?php }elseif($_SESSION['flash'] == "invalidusername"){ ?>
+                                <p><i class="fas fa-exclamation-circle"></i> Invalid username.</p>
+                            <?php }elseif($_SESSION['flash'] == "invalidemail"){ ?>
+                                <p><i class="fas fa-exclamation-circle"></i> Invalid email.</p>
+                            <?php }elseif($_SESSION['flash'] == "passworddontmatch"){ ?>
+                                <p><i class="fas fa-exclamation-circle"></i> Password don't match.</p>
+                            <?php }elseif($_SESSION['flash'] == "emailusernametaken"){ ?>
+                                <p><i class="fas fa-exclamation-circle"></i> Username or email already taken.</p>
+                            <?php }else{ ?>
+                                <p><i class="fas fa-exclamation-circle"></i> Server error</p>
+                            <?php } ?>
+                    </div>
+                    <?php endif;  unset($_SESSION['flash']);?>
                     <hr class="line">
                     <p class="p-small">By signing in or creating an account you agree with our Terms and Condiotions and Privacy Statement.</p>
                     <hr class="line">

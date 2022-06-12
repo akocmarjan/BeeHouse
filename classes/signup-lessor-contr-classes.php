@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class SignupContr extends Signup{
 
     private $email;
@@ -25,27 +25,32 @@ class SignupContr extends Signup{
     public function signupUser(){
         if($this->emptyInput() == false){
             // echo "Empty input!";
-            header("location: ../index.php?error=emptyinput");
+            $_SESSION['flash'] = "emptyinput";
+            header("location: ../signup-lessor.php?error=emptyinput");
             exit();
         }
         if($this->invalidUsername() == false){
             // echo "Invalid username!";
-            header("location: ../index.php?error=invalidUsername");
+            $_SESSION['flash'] = "invalidusername";
+            header("location: ../signup-lessor.php?error=invalidUsername");
             exit();
         }
         if($this->invalidEmail() == false){
             // echo "Invalid email!";
-            header("location: ../index.php?error=invalidEmail");
+            $_SESSION['flash'] = "invalidemail";
+            header("location: ../signup-lessor.php?error=invalidEmail");
             exit();
         }
         if($this->passwordMatch() == false){
             // echo "Password don't match!";
-            header("location: ../index.php?error=passworddontMatch");
+            $_SESSION['flash'] = "passworddontmatch";
+            header("location: ../signup-lessor.php?error=passworddontMatch");
             exit();
         }
         if($this->usernameEmailTakenCheck() == false){
             // echo "Username or email already taken!";
-            header("location: ../index.php?error=usernameEmailTakenCheck");
+            $_SESSION['flash'] = "emailusernametaken";
+            header("location: ../signup-lessor.php?error=usernameEmailTakenCheck");
             exit();
         }
 

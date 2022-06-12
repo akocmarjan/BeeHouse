@@ -21,6 +21,46 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+.notif-popup{
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    left: 50%;
+    opacity: 1;
+    top: 55px;
+    transform: translate(-50%,-50%);
+    width: 380px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+}
+.notif-popup.hide{
+    opacity: 0;
+}
+.notif-popup i{
+    font-size: 32px;
+    color: #3e8e41;
+}
+.notif-popup button{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 10px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.notif-popup button:hover{
+    box-shadow: 0 5px 16px 0 rgba(0,0,0,0.24), 0 5px 10px 0 rgba(0,0,0,0.19);
+}
 
 nav{
     display: flex;
@@ -298,9 +338,15 @@ nav{
     height: 40px;
     outline: none;
     font-size: 15px;
-    background: var(--main-color);
+    background: var(--main-color2);
     color: black;
     cursor: pointer;
+    border: none;
+}
+.popup .form .form-element input[type="submit"]:hover{
+    background-color: var(--main-color);
+    color: black;
+    border: 2px solid var(--main-color2)
 }
 .popup .form .form-element a{
     display: block;

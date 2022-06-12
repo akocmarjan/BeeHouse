@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class SignupContr extends Signup{
 
     private $email;
@@ -27,27 +27,32 @@ class SignupContr extends Signup{
     public function signupUser(){
         if($this->emptyInput() == false){
             // echo "Empty input!";
-            header("location: ../index.php?error=emptyinput");
+            $_SESSION['flash'] = 'emptyinput';
+            header("location: ../signup-tenant.php?error=emptyinput");
             exit();
         }
         if($this->invalidUsername() == false){
+            $_SESSION['flash'] = 'invalidusername';
             // echo "Invalid username!";
-            header("location: ../index.php?error=invalidUsername");
+            header("location: ../signup-tenant.php?error=invalidUsername");
             exit();
         }
         if($this->invalidEmail() == false){
+            $_SESSION['flash'] = 'invalidemail';
             // echo "Invalid email!";
-            header("location: ../index.php?error=invalidEmail");
+            header("location: ../signup-tenant.php?error=invalidEmail");
             exit();
         }
         if($this->passwordMatch() == false){
+            $_SESSION['flash'] = 'passworddontmatch';
             // echo "Password don't match!";
-            header("location: ../index.php?error=passworddontMatch");
+            header("location: ../signup-tenant.php?error=passworddontMatch");
             exit();
         }
         if($this->usernameEmailTakenCheck() == false){
+            $_SESSION['flash'] = 'emailusernametaken';
             // echo "Username or email already taken!";
-            header("location: ../index.php?error=usernameEmailTakenCheck");
+            header("location: ../signup-tenant.php?error=usernameEmailTakenCheck");
             exit();
         }
 

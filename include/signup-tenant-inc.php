@@ -20,6 +20,6 @@ if(isset($_POST['submit']))
 
     $signup->signupUser();
 
-    header("location: ../listing.php?error=none");
+    header("location: ../index.php?error=signupsuccess");
 }
 ?>

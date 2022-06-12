@@ -13,9 +13,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION['
 
 //require functions.php file
 require ('functions.php');
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +26,13 @@ require ('functions.php');
         
     </head>
     <body style="background-image:  url(images/banner.png);">
-        
+    <?php if(isset($_GET['error']) == 'signupsuccess'):?>
+    <div class="notif-popup">
+        <i class="fas fa-check-circle"></i>
+        <p>Congratulation, your account has been successfully created.</p>
+        <button id="cont">Continue</button>
+    </div>
+    <?php endif; ?>
         <?php include_once ('template.include/header.php') ?>
         
         <?php include_once ('template.include/signin-popup.php') ?>

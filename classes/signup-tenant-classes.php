@@ -6,7 +6,7 @@ class Signup extends Dbh{
 
         if(!$result->execute(array($username, $email, $firstname, $lastname, $gender, $phone, $hashed_password))){
             $result = null;
-            header("Location: ../index.php?error=sqlfailed");
+            header("Location: ../signup-tenant.php?error=sqlfailed");
             exit();
         }
 
@@ -18,7 +18,7 @@ class Signup extends Dbh{
 
         if(!$result->execute(array($username, $email))){
             $result = null;
-            header("Location: ../index.php?error=sqlfailed");
+            header("Location: ../signup-tenant.php?error=sqlfailed");
             exit();
         }
 

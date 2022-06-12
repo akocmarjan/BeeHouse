@@ -32,7 +32,7 @@
                                 <label for="remember-me-partner">Remember me</label>
                             </div>
                             <div class="form-element">
-                                <input type="submit" name="submit" class="btn btn-primary" value="Login">
+                                <input type="submit" name="submit" class="btn btn-primary" value="Sign in">
                             </div>
                             <div class="form-element">
                                 <a href="#">Forgot password</a>
@@ -57,7 +57,7 @@
                                 <label for="remember-me-user">Remember me</label>
                             </div>
                             <div class="form-element">
-                                <input type="submit" name="submit" class="btn btn-primary" value="Login">
+                                <input type="submit" name="submit" class="btn btn-primary" value="Sign in">
                             </div>
                             <div class="form-element">
                                 <a href="#">Forgot password</a>
