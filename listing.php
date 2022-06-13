@@ -8,9 +8,33 @@ session_start();
 //     header("location: index.php");
 //     exit;
 // }
-require ('functions.php');
 
-$unit_shuffle = $table->getData();
+require ('functions.php');
+$results_per_page = 5;
+
+if(!isset($_GET['page'])){
+    $page  = 1;
+}else{
+    $page = $_GET['page'];
+}
+
+
+if(isset($_POST['submit'])){
+    $search_term = $_POST['search-term'];
+    $num_row = $table->getRows($search_term);
+    $number_of_pages = ceil($num_row/$results_per_page);
+    $this_page_first_result = ($page-1)*$results_per_page;
+    $search_result = $table->getSearchResult($search_term,$this_page_first_result, $results_per_page);
+}else{
+    $num_row = $table->getRows("%");
+    $number_of_pages = ceil($num_row/$results_per_page);
+    $this_page_first_result = ($page-1)*$results_per_page;
+    $search_result = $table->getSearchResult("%",$this_page_first_result, $results_per_page);
+    
+}
+
+
+
 
 
 ?>
@@ -18,10 +42,11 @@ $unit_shuffle = $table->getData();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Bee House</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="navbar.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="images/icon.png">
 </head>
 <body style="background-image:  linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),url(images/banner2.png);">
     <?php include_once ('template.include/header.php') ?>
@@ -30,11 +55,20 @@ $unit_shuffle = $table->getData();
     <div class="container">
         <div class="list-container">
             <div class="left-col">
-                <p>20+ Options</p>
-                <h1>Recommended Places in San Miguel</h1>
-                <hr class="line">
-                <?php foreach ($unit_shuffle as $listing){ ?>
-                <a href='details.php?unit_id=<?php echo $listing['id'] ?>'>
+                
+                <?php if(isset($_POST['submit'])){
+                    echo "<p>". $num_row." Options</p>";
+                    echo "<h1>Recommended Places in ". $search_term ."</h1>";
+                    echo '<hr class="line">';
+                }else{
+                    echo "<p>". $num_row." Options</p>";
+                    echo "<h1>Listings as of now </h1>";
+                    echo '<hr class="line">';
+                } ?>
+                
+                
+                <?php foreach ($search_result as $listing){ ?>
+                <a href='details.php?unit_id=<?php echo $listing['property_id'] ?>'>
                     <div class="house">
                         <div class="house-img">
                             <img src= <?php echo "imagess/".$listing['image_name'] ?>>
@@ -99,7 +133,7 @@ $unit_shuffle = $table->getData();
         </div>
 
         <div class="pagination">
-            <h3><</h3>
+            <!-- <h3><</h3>
             <span class="current">1</span>
             <span>2</span>
             <span>3</span>
@@ -107,7 +141,13 @@ $unit_shuffle = $table->getData();
             <span>5</span>
             <span>&middot; &middot; &middot; &middot;</span>
             <span>20</span>
-            <h3>></h3>
+            <h3>></h3> -->
+            <h3><i class="fas fa-caret-left"></i></h3>
+            <?php for($page=1;$page<=$number_of_pages;$page++){
+                
+                echo '<a href="listing.php?page=' . $page . '"><span>' . $page . '</span></a>';
+            } ?>
+            <h3><i class="fas fa-caret-right"></i></h3>
             
         </div>
 
@@ -117,3 +157,8 @@ $unit_shuffle = $table->getData();
     <script src="javascript.js"></script>
 </body>
 </html>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>

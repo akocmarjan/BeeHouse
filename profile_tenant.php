@@ -51,9 +51,8 @@ session_start();
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
+                    Dashboard
                 </label>
-
-                Dashboard
             </h2>
 
             <div class="search-wrapper">

@@ -29,5 +29,25 @@ class DBController{
             $this->con = null;
         }
     }
+
+    function runQuery($query) {
+		$result = mysqli_query($this->con,$query);
+		while($row=mysqli_fetch_assoc($result)) {
+			$resultset[] = $row;
+		}		
+		if(!empty($resultset))
+			return $resultset;
+	}
+	
+	function numRows($query) {
+		$result  = mysqli_query($this->con, $query);
+		$rowcount = mysqli_num_rows($result);
+		return $rowcount;	
+	}
+	
+	function executeQuery($query) {
+	    $result  = mysqli_query($this->con, $query);
+	    return $result;	
+	}
 }
 

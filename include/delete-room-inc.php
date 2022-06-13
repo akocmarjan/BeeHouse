@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['submit']))
 {
-	$room_id = $_POST['room_id'];
+	$room_id = $_POST['del_room_id'];
 
     include '../classes/dbh-classes.php';
     include '../classes/delete-classes.php';
@@ -12,6 +12,6 @@ if(isset($_POST['submit']))
 
     $deleteroom->deleteRoom();
 
-    header("location: ../dashboard-partner-dashboard.php?error=none");
+    header("location: ../dashboard-partner-rooms.php?error=none");
 }
 ?>

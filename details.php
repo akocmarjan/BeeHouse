@@ -29,9 +29,10 @@ $rooms = $table->getRoom($unit_id);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Details</title>
+    <title>Bee House</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="icon" href="images/icon.png">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>
 <body style="background-image:  linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),url(images/banner2.png);">
@@ -86,14 +87,14 @@ $rooms = $table->getRoom($unit_id);
                     <?php foreach($rooms as $room){ ?>
                     <div class="room-card">
                         <h3><i class="fas fa-home"></i> <?php echo $room['room_number'] ?></h3>
-                        <?php if( $room['status'] == 0){?>
+                        <?php if( $room['status'] == 0 || $room['tenants'] >= $room['slots']){?>
                             <h3><i class="fas fa-times-circle"></i> Not Available</h3>
                         <?php }elseif($room['status'] == 2){?>
                             <h3><i class="fas fa-exclamation-circle"></i> Maintenance </h3>
                         <?php }else{?>
                             <h3><i class="fas fa-check-circle"></i> Available </h3>
                         <?php } ?>
-                        <h3><i class="fas fa-user"></i> <?php echo '0/'.$room['slots'] ?></h3>
+                        <h3><i class="fas fa-user"></i> <?php echo $room['tenants']. "/" .$room['slots'] ?></h3>
                         <h3><i class="fas fa-ruble-sign"></i> <?php echo $room['price'] ?></h3>
                         
                         <div class="form-group">
@@ -171,3 +172,4 @@ $rooms = $table->getRoom($unit_id);
 <script src="javascript.js"></script>
 </body>
 </html>
+

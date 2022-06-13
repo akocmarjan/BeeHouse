@@ -16,7 +16,8 @@ $property = $table->getProperty($_SESSION['partnerid']);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Dashboard - Rooms</title>
+    <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
    
@@ -197,7 +198,7 @@ $property = $table->getProperty($_SESSION['partnerid']);
                                                 <tr>
                                                     
                                                     <td class="text-center"><?php echo $rooms['room_number']?></td>
-                                                    <td class="text-center">0/<?php echo $rooms['slots']?></td>
+                                                    <td class="text-center"><?php echo $rooms['tenants']. "/" .$rooms['slots']?></td>
                                                     <td class="text-center"><?php echo $rooms['price']?></td>
                                                     
                                                     <?php if($rooms['status'] == 1): ?>
@@ -208,9 +209,8 @@ $property = $table->getProperty($_SESSION['partnerid']);
                                                     <td class="text-center"><span class="badge badge-default"><span class="status orange"></span>Maintenance</span></td>
                                                     <?php endif; ?>
                                                     <td class="text-center">
-                                                        <?php $room_id = $rooms['id'] ?>
                                                         <button class="cd-popup-trigger-update action button-approve update-room" data-room_id="<?php echo $rooms['id'] ?>" data-room_number="<?php echo $rooms['room_number'] ?>" data-room_slots="<?php echo $rooms['slots'] ?>" data-room_price="<?php echo $rooms['price'] ?>" type="button">Edit</button>
-                                                        <button class="cd-popup-trigger action button-cancel" type="button">Delete</button>
+                                                        <button class="cd-popup-trigger action button-cancel del-room" data-room_id="<?php echo $rooms['id'] ?>" type="button">Delete</button>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -220,14 +220,13 @@ $property = $table->getProperty($_SESSION['partnerid']);
                                 </div>
                             </div>
                         </div>
-
                     <?php } ?>
                     <form action="include/delete-room-inc.php" method="post">
                         <div class="cd-popup" role="alert">
                             <div class="cd-popup-container">
                                 <p>Are you sure you want to delete this room?</p>
                                 <ul class="cd-buttons" style="list-style: none;">
-                                    <input type="hidden" name="room_id" value=<?php echo $room_id ?>>
+                                    <input type="hidden" name="del_room_id" id="del_room_id">
                                     <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
                                     <li><input type="button" class="cd-button-no" value="No"></input></li>
                                 </ul>

@@ -2,9 +2,9 @@
     <nav id="navBar" class="navbar-white">
         <a href="index.php"><img src="images/logo.png" class="logo"></a>
         <ul class="nav-links">
-            <form action="" class="sm-search-bar">
-                <input class="sm-search-input" type="search" name="search" pattern=".*\S.*" required>
-                <button class="sm-search-btn" type="submit">
+            <form action="listing.php" method="post" class="sm-search-bar">
+                <input class="sm-search-input" type="search" name="search-term" pattern=".*\S.*" required>
+                <button class="sm-search-btn" type="submit" name="submit">
                     <span>Search</span>
                 </button>
             </form>
@@ -27,15 +27,15 @@
                     <?php
                         } 
                     ?>
-                        <div class="dropdown-menu">
-                            <img src="images/user.png" width="30px" height="30px" alt="">
-                            <div class="dropdown-content">
-                                <a href="logout.php">Logout</a>
-                            </div>
+                    <div class="dropdown-menu">
+                        <img src="images/user.png" width="30px" height="30px" alt="">
+                        <div class="dropdown-content">
+                            <a href="logout.php">Logout</a>
                         </div>
+                    </div>
                     <div>
                         <h4><?php echo htmlspecialchars($_SESSION["username"]);?></h4>
-                        <small>Worker bee</small>
+                        <small>User</small>
                     </div>
                  </div>
             <?php

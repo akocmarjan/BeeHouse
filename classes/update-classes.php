@@ -25,4 +25,16 @@ class Update extends Dbh{
         $result = null;
     }
 
+    protected function setTenant($id){
+        $result = $this->connect()->prepare("UPDATE room SET tenants = tenants + 1 WHERE id = ?;");
+
+        if(!$result->execute(array($id))){
+            $result = null;
+            header("location: ../listing.php?error=sqlfailed");
+            exit();
+        }
+
+        $result = null;
+    }
+
 }

@@ -162,10 +162,37 @@ class Table{
         return $resultArray;
     }
 
+    public function getSearchResult($search_term, $this_page_first_result,  $result_per_page){
+        $result = $this->db->con->query("SELECT *
+        FROM `property`, category, unit_images
+        WHERE property.category_id = category.id AND property.id = unit_images.property_id AND ((province LIKE'%$search_term%')
+          OR (city LIKE '%$search_term%')
+          OR (barangay LIKE '%$search_term%')
+          OR (property_name LIKE '%$search_term%'))
+        GROUP BY property.id
+        ORDER BY property.id ASC
+        LIMIT $this_page_first_result, $result_per_page");
 
+        $resultArray = array();
+        while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+            $resultArray[] = $item;
+        }
+        return $resultArray;
+    }
 
- 
-    // LEFT JOIN unit_images
-    // ON units.id = unit_images.unit_id
+    public function getRows($search_term){
+        $result = $this->db->con->query("SELECT *
+        FROM `property`, category, unit_images
+        WHERE property.category_id = category.id AND property.id = unit_images.property_id AND ((province LIKE'%$search_term%')
+          OR (city LIKE '%$search_term%')
+          OR (barangay LIKE '%$search_term%')
+          OR (property_name LIKE '%$search_term%'))
+        GROUP BY property.id
+        ORDER BY property.id ASC");
+
+        $rows = mysqli_num_rows($result);
+        
+        return $rows;
+    }
 
 }

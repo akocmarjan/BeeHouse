@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['submit']))
 {
-    $application_id = $_POST['applicants_id'];
+    $application_id = $_POST['application_id'];
     $room_id = $_POST['room_id'];
     $user_id = $_POST['user_id'];
 
@@ -11,14 +11,19 @@ if(isset($_POST['submit']))
     include '../classes/add-tenant-contr-classes.php';
     include '../classes/delete-application-classes.php';
     include '../classes/delete-application-contr-classes.php';
+    include '../classes/update-classes.php';
+    include '../classes/update-room.addtenant-contr-classes.php';
+
 
     $addtenant = new AddtenantContr($room_id, $user_id);
-
     $addtenant->addTenant();
 
-    $deleteapplication = new DeleteapplicationContr($application_id);
+    $inctenant = new UpdateRoomAddContr($room_id);
+    $inctenant->updateRoom();
 
+    $deleteapplication = new DeleteapplicationContr($application_id);
     $deleteapplication->deleteApplication();
+
 
     header("location: ../dashboard-partner-tenants.php?error=none");
 }

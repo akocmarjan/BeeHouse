@@ -19,7 +19,7 @@ if(isset($_POST['submit']))
     $signup = new SignupContr($username, $email, $password, $con_password, $firstname, $lastname, $gender,$phone, $hashed_password);
 
     $signup->signupUser();
-
+    $_SESSION['flash'] = "signupsuccess";
     header("location: ../index.php?error=signupsuccess");
 }
 ?>

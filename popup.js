@@ -51,4 +51,8 @@ jQuery(document).ready(function($){
 		document.getElementById('price_updt').setAttribute('value', $(this).attr('data-room_price'));
 		
 	});
+
+	$('.del-room').on('click', function(event){
+		document.getElementById('del_room_id').setAttribute('value', $(this).attr('data-room_id'));
+	});
 });

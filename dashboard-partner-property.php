@@ -19,8 +19,9 @@ $category = $table->getCategory();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Dashboard - Property</title>
     <link rel="stylesheet" href="style-dashboard.css">
+    <link rel="icon" href="images/icon.png">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
     
 

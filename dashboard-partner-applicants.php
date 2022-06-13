@@ -8,7 +8,8 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Application</title>
+    <title>Dashboard - Application</title>
+    <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>
