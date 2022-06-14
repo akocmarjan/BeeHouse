@@ -36,7 +36,7 @@ class AddunitsContr extends Addunits{
 
     private function emptyInput(){
         $result;
-        if(empty($this->property_name) || empty($this->category_id) || empty($this->barangay) || empty($this->available_for)){
+        if(empty($this->property_name) || empty($this->category_id) || empty($this->barangay)){
             $result = false;
         }else{
             $result = true;

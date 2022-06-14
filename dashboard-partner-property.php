@@ -19,6 +19,7 @@ $category = $table->getCategory();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard - Property</title>
     <link rel="stylesheet" href="style-dashboard.css">
     <link rel="icon" href="images/icon.png">
@@ -29,6 +30,9 @@ $category = $table->getCategory();
     
 </head>
 <body>
+    <?php include 'template.include/add-property-popup.php';?>
+    <?php include 'template.include/update-property-popup.php'; ?>
+    
     <input type="checkbox"  id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
@@ -73,9 +77,9 @@ $category = $table->getCategory();
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
-                    Property
+                    
                 </label>
-
+                Property
                 
             </h2>
 
@@ -96,125 +100,12 @@ $category = $table->getCategory();
         <main>
             <div class="units-grid">
 
-                
-                <!-- Add Unit -->
-                <div class="units-wrapper">
-                    <h2>Add Property</h2>
-                    <form action="include/add-units-inc.php" id="postForm" method="post" enctype="multipart/form-data">
-                        <div class="form-step form-step-active w3-animate-fading w3-animate-opacity">
-                            <h1>Name and Type</h1>
-                            <p class="p-med">What is the name of your property?</p>
-                            <div class="input-group">
-                                <label for="propertyName">Property name</label>
-                                <input type="text" name="propertyName" id="propertyName">
-                            </div>
-                            <div class="input-group">
-                                <label for="property_name">Property type</label>
-                                <div class="select">
-                                    <select name="categoryID" id="select_cat">
-                                        <option selected disabled="">Choose unit type below</option>
-                                        <?php
-                                        foreach($category as $cat){
-                                            echo "<option value='".$cat['id']."' >".$cat['category_name']."</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="">
-                                <a href="#" class="btn btn-next width-50 ml-auto"><span>Continue</span></a>
-                            </div>
-                            <hr class="line">
-                        </div>
-                        <div class="form-step w3-animate-right w3-animate-opacity">
-                            <h1>Location</h1>
-                            <p class="p-med">Where is your property located?</p>
-                            <div class="input-group">
-                                <label>Region</label>
-                                <input type="hidden" name="regionSelected"/>
-                                <div class="select">
-                                    <select name="region" id="region">
-                                        <option selected disabled="">Choose below</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <label>Province</label>
-                                <input type="hidden" name="provinceSelected"/>
-                                <div class="select">
-                                    <select name="province" id="province">
-                                        <option selected disabled="">Choose below</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <label>City</label>
-                                <input type="hidden" name="citySelected"/>
-                                <div class="select">
-                                    <select name="city" id="city">
-                                        <option selected disabled="">Choose below</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <label>Barangay</label>
-                                <input type="hidden" name="barangaySelected"/>
-                                <div class="select">
-                                    <select name="barangay" id="barangay">
-                                        <option selected disabled="">Choose below</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <label>Postal Code</label>
-                                <input type="text" name="postal">
-                            </div>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-prev"><span>Back</span></a>
-                                <a href="#" class="btn btn-next"><span>Continue</span></a>
-                            </div>
-                        </div>
-                        <div class="form-step w3-animate-right">
-                            <h1>Map</h1>
-                            <p class="p-med">Set location on the map.</p>
-                            <div class="input-group">
-                                <label>Pinpoint your property</label>
-                                <div id="googleMap" style="width:320px;height:450px;"></div>
-                            </div>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-prev"><span>Back</span></a>
-                                <a href="#" class="btn btn-next"><span>Continue</span></a>
-                            </div>
-                        </div>
-                        <div class="form-step w3-animate-right">
-                            <h1>Criteria</h1>
-                            <p class="p-med">Who can lease here?</p>
-                            <div class="input-group">
-                                <label>Available for</label>
-                                <div class="select">
-                                    <select name="availableFor" id="select_cat">
-                                    <option selected disabled="">Choose below</option>
-                                        <option value=0>Female</option>
-                                        <option value=1>Male</option>
-                                        <option value=2>Both</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-prev"><span>Back</span></a>
-                                <button type="submit" name="submit" class="btn"><span>Add</span></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- Add Unit -->
-                
                 <!-- Added Units Table -->
                 <div class="units-wrapper">
                     <div class="units">
                         <div class="card">
                             <div class="card-header">
-                                <h3>Added Units</h3>
+                                <h3>Added Property</h3>
                                 <button>See all <span class=""fas fa-arrow-right></span></button>
                             </div>
                             <div class="card-body">
@@ -222,7 +113,8 @@ $category = $table->getCategory();
                                     <table width="100%">
                                         <thead>
                                             <tr>
-                                                <td>Unit Name</td>
+                                                <td>#</td>
+                                                <td>Property Name</td>
                                                 <td>Category Type</td>
                                                 <td>Address</td>
                                                 <td>Tenants</td>
@@ -231,16 +123,18 @@ $category = $table->getCategory();
                                         </thead>
                                         <tbody>
                                             <?php
-                                            // Fetch category
+                                            $counter=0;
                                             foreach($property as $properties){
+                                                $counter++;
                                             ?>
-                                            <tr>
+                                            <tr class="inputss">
+                                                <td><?php echo $counter."." ?></td>
                                                 <td class="text-center"><?php echo $properties['property_name']?></td>
                                                 <td class="text-center"><?php echo $properties['category_name']?></td>
                                                 <td class="text-center"><?php echo $properties['barangay'].", ".$properties['city'].", ".$properties['province']?></td>
                                                 <td class="text-center"></td>
                                                 <td class="text-center">
-                                                    <button class="cd-popup-trigger-update action button-approve update-property" type="button" data-property_id="<?php echo $properties['property_id'] ?>" data-property_name="<?php echo $properties['property_name'] ?>" data-property_category="<?php echo $properties['category_id'] ?>" data-property_region="<?php echo $properties['region'] ?>" data-property_province="<?php echo $properties['province'] ?>" data-property_city="<?php echo $properties['city'] ?>" data-property_barangay="<?php echo $properties['barangay'] ?>" data-property_postal="<?php echo $properties['postal'] ?>" data-property_availablefor="<?php echo $properties['available_for'] ?>">Edit</button>
+                                                    <button class="show-update action button-approve update-property" type="button" data-property_id="<?php echo $properties['property_id'] ?>" data-property_name="<?php echo $properties['property_name'] ?>" data-property_category="<?php echo $properties['category_id'] ?>" data-property_region="<?php echo $properties['region'] ?>" data-property_province="<?php echo $properties['province'] ?>" data-property_city="<?php echo $properties['city'] ?>" data-property_barangay="<?php echo $properties['barangay'] ?>" data-property_postal="<?php echo $properties['postal'] ?>" data-property_availablefor="<?php echo $properties['available_for'] ?>">Edit</button>
                                                     <button class="cd-popup-trigger action button-cancel" type="button">Delete</button>
                                                 </td>
                                             </tr>
@@ -258,72 +152,11 @@ $category = $table->getCategory();
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form class="popup-update" action="include/update-property-inc.php" method="post" id="manage-property">
-                                                <div class="cd-popup-update" role="alert">
-                                                    <div class="cd-popup-container">
-                                                        <p>Press update to save the changes.</p>
-                                                        <input type="hidden" name="propertyID_updt" id="propertyID_updt">
-                                                        <div class="input-group">
-                                                            <label for="propertyName_updt">Property name</label>
-                                                            <input type="text" name="propertyName_updt" id="propertyName_updt">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label for="categoryID_updt">Property type</label>
-                                                            <div class="select">
-                                                                <select name="categoryID_updt" id="categoryID_updt">
-                                                                    <option selected disabled="">Choose unit type below</option>
-                                                                    <?php
-                                                                    foreach($category as $cat){
-                                                                        echo "<option value='".$cat['id']."' >".$cat['category_name']."</option>";
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label>Region</label>
-                                                            <input type="text" name="region_updt" id="region_updt">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label>Province</label>
-                                                            <input type="text" name="province_updt" id="province_updt">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label>City</label>
-                                                            <input type="text" name="city_updt" id="city_updt">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label>Barangay</label>
-                                                            <input type="text" name="barangay_updt" id="barangay_updt">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label>Postal Code</label>
-                                                            <input type="text" name="postal_updt" id="postal_updt">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <label>Available for</label>
-                                                            <div class="select">
-                                                                <select name="availableFor_updt" id="availableFor_updt">
-                                                                    <option selected disabled value="">Choose below</option>
-                                                                    <option value=0>Female</option>
-                                                                    <option value=1>Male</option>
-                                                                    <option value=2>Both</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <ul class="cd-buttons" style="list-style: none;">
-                                                            <input type="hidden" name="property_id" value=<?php echo $properties['property_id'] ?>>
-                                                            <li><input name="submit" type="submit" class="cd-button-yes" value="Update"></input></li>
-                                                            <li><input type="button" class="cd-button-no" value="Cancel"></input></li>
-                                                        </ul>
-                                                        <a href="#0" class="cd-popup-close img-replace">Close</a>
-                                                    </div>
-                                                </div>
-                                            </form>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                            <button class="btn-skeletal" id="show-login">+ Add Units</button>
                         </div>
                     </div>
                 </div>
@@ -337,6 +170,7 @@ $category = $table->getCategory();
 <script type="text/javascript" src="multi-step.js"></script>
 <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script>
 <script src="popup.js"></script>
+<script src="javascript.js"></script>
 
 </body>
 </html>

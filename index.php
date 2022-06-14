@@ -27,14 +27,14 @@ require ('functions.php');
         
     </head>
     <body style="background-image:  url(images/banner.png);">
-    <?php if(isset($_SESSION['flash'])):
-        if($_SESSION['flash'] == 'signupsuccess'){?>
-    <div class="notif-popup">
-        <i class="fas fa-check-circle"></i>
-        <p>Congratulation, your account has been successfully created.</p>
-        <button id="cont">Continue</button>
-    </div>
-    <?php unset($_SESSION['flash']); } endif; ?>
+        <?php if(isset($_SESSION['flash'])):
+            if($_SESSION['flash'] == 'signupsuccess'){?>
+        <div class="notif-popup">
+            <i class="fas fa-check-circle"></i>
+            <p>Congratulation, your account has been successfully created.</p>
+            <button id="cont">Continue</button>
+        </div>
+        <?php unset($_SESSION['flash']); } endif; ?>
 
         <?php include_once ('template.include/header.php') ?>
         
@@ -62,7 +62,7 @@ require ('functions.php');
         </main>
 
        
-        <?php include_once ('template.include/footer.php') ?>
+       
     </body>
 </html>
 <script src="javascript.js"></script>

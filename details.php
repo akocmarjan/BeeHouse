@@ -1,20 +1,6 @@
 <?php
-// Initialize the session
 session_start();
-// include('config.php');
-// include('select_cat.php');
-// include('select_lessor.php');
 $unit_id = $_GET['unit_id'];
-// $sql_units = "SELECT * FROM units WHERE id = $unit_id";
-// $units_data = mysqli_query($mysqli,$sql_units);
-// while($row = mysqli_fetch_assoc($units_data) ):
-//     $unit_name[$row['id']] = $row['name'];
-//     $unitName = $row['name'];
-//     $unitID = $row['id'];
-//     $address = $row['address'];
-//     $categoryType = $cat_name[$row['category_id']];
-//     $host =  $lessor_name[$row['lessor_id']];
-// endwhile;
 // Check if the user is logged in, if not then redirect him to login page
 // if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 //     header("location: index.php");
@@ -26,23 +12,22 @@ $rooms = $table->getRoom($unit_id);
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bee House</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="icon" href="images/icon.png">
-    <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
-</head>
-<body style="background-image:  linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),url(images/banner2.png);">
-    
-    <?php include_once ('template.include/header.php') ?>
-    <?php include_once ('template.include/signin-popup.php') ?>
-    
-    
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bee House</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="images/icon.png">
+        <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body style="background-image:  linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),url(images/banner2.png);">
+
+        <?php include_once ('template.include/header.php') ?>
+        <?php include_once ('template.include/signin-popup.php') ?>
+
         <?php foreach($property as $properties){ ?>
-       <section>
+        <section>
             <div class="house-details">
                 <form class="house-form">
                     <div class="house-title">
@@ -75,9 +60,8 @@ $rooms = $table->getRoom($unit_id);
                 </form>
                 <hr class="line">
             </div>
-        </section>  
-
-
+        </section>
+        
         <section>
             <div class="house-details">
                 <div class="rooms-form">
@@ -101,12 +85,12 @@ $rooms = $table->getRoom($unit_id);
                             <?php
                                 if(isset($_SESSION['userid'])){
                             ?>
-                            <button class="cd-popup-trigger button1" value="Check in" ><span>Check in</span></button>
+                            <button class="cd-popup-trigger button-details" value="Check in" ><span>Check in</span></button>
                             <?php
                                 }else{
                             ?>
                                 <a href="signup-tenant.php">
-                                    <button class="button1" value="Check in" ><span>Sign up</span></button>
+                                    <button class="button-details" value="Check in" ><span>Sign up</span></button>
                                 </a>
                             <?php
                                 }
@@ -114,25 +98,24 @@ $rooms = $table->getRoom($unit_id);
                             
                         </div>
                     </div>
-                    <form action="include/add-application-inc.php" method="post">
-                        <div class="cd-popup" role="alert">
-                            <div class="cd-popup-container">
-                                <p>Are you sure you want check in?</p>
-                                <ul class="cd-buttons" style="list-style: none;">
-                                    <input type="hidden" name="room_id" value=<?php echo $room['id'] ?>>
-                                    <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
-                                    <li><input type="button" class="cd-button-no" value="No"></input></li>
-                                </ul>
-                                <a href="#0" class="cd-popup-close img-replace">Close</a>
-                            </div>
-                        </div>
-                    </form>
                     <?php } ?>
                 </div>
+                <form action="include/add-application-inc.php" method="post">
+                    <div class="cd-popup" role="alert">
+                        <div class="cd-popup-container">
+                            <p>Are you sure you want check in?</p>
+                            <ul class="cd-buttons" style="list-style: none;">
+                                <input type="hidden" name="room_id" value=<?php echo $room['id'] ?>>
+                                <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
+                                <li><input type="button" class="cd-button-no" value="No"></input></li>
+                            </ul>
+                            <a href="#0" class="cd-popup-close img-replace">Close</a>
+                        </div>
+                    </div>
+                </form>
                 <hr class="line">
             </div>
         </section>
-
 
         <section>
             <div class="house-details">
@@ -144,8 +127,7 @@ $rooms = $table->getRoom($unit_id);
                 <hr class="line">
             </div>
         </section>
-        
-        
+
         <section>
             <div class="house-details">
                 <div class="host">
@@ -165,11 +147,10 @@ $rooms = $table->getRoom($unit_id);
             </div>
         </section>
         <?php } ?>
-   
-    <?php include_once ('template.include/footer.php') ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="popup.js"></script>
-<script src="javascript.js"></script>
-</body>
-</html>
 
+        <?php include_once ('template.include/footer.php') ?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="popup.js"></script>
+        <script src="javascript.js"></script>
+    </body>
+</html>

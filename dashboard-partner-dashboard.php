@@ -18,6 +18,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard</title>
     <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="style-dashboard.css">
@@ -52,8 +53,8 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                     <span>Applicants</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-user-circle"></span>
-                    <span>Accounts</span></a>
+                    <a href="listing.php"><span class="fas fa-user-circle"></span>
+                    <span>Home</span></a>
                 </li>
                 <li>
                     <a href="logout.php"><span class="fas fa-sign-out-alt"></span>
@@ -68,9 +69,8 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
-                    Dashboard
                 </label>
-                
+                Dashboard
             </h2>
 
             <div class="search-wrapper">

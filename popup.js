@@ -33,15 +33,7 @@ jQuery(document).ready(function($){
     });
 
 	$('.update-property').on('click', function(event){
-		document.getElementById('propertyID_updt').setAttribute('value', $(this).attr('data-property_id'));
-		document.getElementById('propertyName_updt').setAttribute('value', $(this).attr('data-property_name'));
-		//document.getElementById('categoryID_updt').setAttribute('value', $(this).attr('data-property_category'));
-		document.getElementById('region_updt').setAttribute('value', $(this).attr('data-property_region'));
-		document.getElementById('province_updt').setAttribute('value', $(this).attr('data-property_province'));
-		document.getElementById('city_updt').setAttribute('value', $(this).attr('data-property_city'));
-		document.getElementById('barangay_updt').setAttribute('value', $(this).attr('data-property_barangay'));
-		document.getElementById('postal_updt').setAttribute('value', $(this).attr('data-property_postal'));
-		//document.getElementById('availableFor_updt').setAttribute('value', $(this).attr('data-property_availablefor'));
+	
 	});
 
 	$('.update-room').on('click', function(event){
@@ -54,5 +46,32 @@ jQuery(document).ready(function($){
 
 	$('.del-room').on('click', function(event){
 		document.getElementById('del_room_id').setAttribute('value', $(this).attr('data-room_id'));
+	});
+
+	$('.show-update').on('click', function(event){
+		event.preventDefault();
+		$('.update-popup-bg').addClass('active');
+		$('.update-popup').addClass('active');
+		document.getElementById('propertyID_updt').setAttribute('value', $(this).attr('data-property_id'));
+		document.getElementById('propertyName_updt').setAttribute('value', $(this).attr('data-property_name'));
+		//document.getElementById('categoryID_updt').setAttribute('value', $(this).attr('data-property_category'));
+		document.getElementById('region_updt').setAttribute('value', $(this).attr('data-property_region'));
+		document.getElementById('province_updt').setAttribute('value', $(this).attr('data-property_province'));
+		document.getElementById('city_updt').setAttribute('value', $(this).attr('data-property_city'));
+		document.getElementById('barangay_updt').setAttribute('value', $(this).attr('data-property_barangay'));
+		document.getElementById('postal_updt').setAttribute('value', $(this).attr('data-property_postal'));
+		document.getElementById('availableFor_updt').setAttribute('value', $(this).attr('data-property_availablefor'));
+	});
+
+	$('.close-btn').on('click', function(event){
+		event.preventDefault();
+		$('.update-popup-bg').removeClass('active');
+		$('.update-popup').removeClass('active');
+	});
+
+	$('.cd-button-no').on('click', function(event){
+		event.preventDefault();
+		$('.update-popup-bg').removeClass('active');
+		$('.update-popup').removeClass('active');
 	});
 });
