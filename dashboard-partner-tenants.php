@@ -21,6 +21,7 @@ $property = $table->getProperty($_SESSION['partnerid']);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard - Tenants</title>
     <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="style-dashboard.css">
@@ -55,8 +56,8 @@ $property = $table->getProperty($_SESSION['partnerid']);
                     <span>Applicants</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-user-circle"></span>
-                    <span>Accounts</span></a>
+                    <a href="listing.php"><span class="fas fa-user-circle"></span>
+                    <span>Home</span></a>
                 </li>
                 <li>
                     <a href="logout.php"><span class="fas fa-sign-out-alt"></span>
@@ -71,8 +72,8 @@ $property = $table->getProperty($_SESSION['partnerid']);
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
-                    Tenants
                 </label>
+                Tenants
                 
             </h2>
 
@@ -120,18 +121,18 @@ $property = $table->getProperty($_SESSION['partnerid']);
                                     foreach($tenant as $tenants){ 
                                     ?>
                                     <tbody>
-                                        <td><?php echo $tenants['first_name'] ?> <?php echo $tenants['last_name'] ?></td>
-                                        <td><?php if($tenants['gender'] == 1){
+                                        <td class="text-center td-tena"><?php echo $tenants['first_name'] ?> <?php echo $tenants['last_name'] ?></td>
+                                        <td class="text-center td-tena"><?php if($tenants['gender'] == 1){
                                             echo "Male";
                                         }else{
                                             echo "Female";
                                         } ?></td>
                                         <?php if($tenants['status'] == 0): ?>
-                                        <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Unpaid</span></td>
+                                        <td class="text-center td-tena"><span class="badge badge-success"><span class="status orange"></span>Unpaid</span></td>
                                         <?php else: ?>
-                                        <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Paid</span></td>
+                                        <td class="text-center td-tena"><span class="badge badge-default"><span class="status green"></span>Paid</span></td>
                                         <?php endif; ?>
-                                        <td class="text-center">
+                                        <td class="text-center td-tena">
                                             <button class="cd-popup-trigger action button-approve" type="button">Edit</button>
                                             <button class="action button-cancel" name="submit" type="submit">Delete</button>
                                         </td>

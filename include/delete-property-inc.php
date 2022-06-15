@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['submit']))
 {
-	$property_id = $_POST['property_id'];
+	$property_id = $_POST['del_property_id'];
 
     include '../classes/dbh-classes.php';
     include '../classes/delete-classes.php';

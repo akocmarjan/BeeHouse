@@ -195,4 +195,16 @@ class Table{
         return $rows;
     }
 
+    public function getCurrentHome($id){
+        $result = $this->db->con->query("SELECT property_name, room_number, price, started_at,  due_date, tenant.status as tenant_status FROM property, room, tenant
+        WHERE property.id = room.property_id AND tenant.room_id = room.id AND tenant.user_id = $id
+        GROUP BY tenant.id");
+
+        $resultArray = array();
+        while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+            $resultArray[] = $item;
+        }
+        return $resultArray;
+    }
+
 }

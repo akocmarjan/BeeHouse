@@ -14,7 +14,7 @@ class Addapplication extends Dbh{
     }
 
     protected function checkUser($user_id, $room_id){
-        $result = $this->connect()->prepare("SELECT id FROM applicants WHERE user_id = ? OR room_id = ?;");
+        $result = $this->connect()->prepare("SELECT id FROM applicants WHERE user_id = ? AND room_id = ?;");
 
         if(!$result->execute(array($user_id, $room_id))){
             $result = null;

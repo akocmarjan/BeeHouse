@@ -151,14 +151,14 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                                 </thead>
                                     <?php foreach($applicant as $applicants){ ?>
                                     <tbody>
-                                        <td><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
-                                        <td></td>
-                                        <td><?php echo $applicants['property_name'] ?></td>
-                                        <td><?php echo $applicants['room_number'] ?></td>
+                                        <td class="text-center td-db"><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
+                                        <td class="text-center td-db"><?php echo $applicants['gender'] ?></td>
+                                        <td class="text-center td-db"><?php echo $applicants['property_name'] ?></td>
+                                        <td class="text-center td-db"><?php echo $applicants['room_number'] ?></td>
                                         <?php if($applicants['status'] == 0): ?>
-                                        <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
+                                        <td class="text-center td-db"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
                                         <?php else: ?>
-                                        <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
+                                        <td class="text-center td-db"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
                                         <?php endif; ?>
                                         <td><?php  ?></td>
                                     </tbody>

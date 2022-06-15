@@ -44,6 +44,11 @@ jQuery(document).ready(function($){
 		
 	});
 
+	$('.del-property').on('click', function(event){
+		document.getElementById('del_property_id').setAttribute('value', $(this).attr('data-property_id'));
+	});
+
+
 	$('.del-room').on('click', function(event){
 		document.getElementById('del_room_id').setAttribute('value', $(this).attr('data-room_id'));
 	});

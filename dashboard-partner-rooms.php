@@ -16,6 +16,7 @@ $property = $table->getProperty($_SESSION['partnerid']);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard - Rooms</title>
     <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="style-dashboard.css">
@@ -24,6 +25,7 @@ $property = $table->getProperty($_SESSION['partnerid']);
 
 </head>
 <body>
+    <?php include 'template.include/add-room-popup.php';?>
     <input type="checkbox"  id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
@@ -52,8 +54,8 @@ $property = $table->getProperty($_SESSION['partnerid']);
                     <span>Applicants</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-user-circle"></span>
-                    <span>Accounts</span></a>
+                    <a href="listing.php"><span class="fas fa-user-circle"></span>
+                    <span>Home</span></a>
                 </li>
                 <li>
                     <a href="logout.php"><span class="fas fa-sign-out-alt"></span>
@@ -68,9 +70,8 @@ $property = $table->getProperty($_SESSION['partnerid']);
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
-                    Rooms
                 </label>
-
+                Rooms
                
             </h2>
 
@@ -91,83 +92,7 @@ $property = $table->getProperty($_SESSION['partnerid']);
         <main>
             <div class="units-grid">
                 <div class="units-wrapper">
-                    <h2>Add Rooms</h2>
-                    <form action="include/add-rooms-inc.php" id="postForm" method="post" enctype="multipart/form-data">
-                        <div class="form-step form-step-active w3-animate-fading w3-animate-opacity">
-                            <h1>Room name</h1>
-                            <p class="p-med">Input a room name or room number to easily identify rooms.</p>
-                            <div class="input-group">
-                                <label for="propertyID">Property name</label>
-                                <div class="select">
-                                    <select name="propertyID" id="propertyID">
-                                        <option selected disabled="">Choose unit type below</option>
-                                        <?php
-                                        foreach($property as $properties){
-                                            echo "<option value='".$properties['property_id']."' >".$properties['property_name']."</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                 <label>Room number</label>
-                                <input type="text" name="roomNumber">
-                            </div>
-                            <div class="">
-                                <a href="#" class="btn btn-next width-50 ml-auto"><span>Continue</span></a>
-                            </div>
-                            <hr class="line">
-                        </div>
-                        <div class="form-step w3-animate-right w3-animate-opacity">
-                            <h1>Room details</h1>
-                            <p class="p-med">How many guest can stay in this room?</p>
-                            <div class="input-group">
-                                <label>Slots</label>
-                                <input type="text" name="slots">
-                            </div>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-prev"><span>Back</span></a>
-                                <a href="#" class="btn btn-next"><span>Continue</span></a>
-                            </div>
-                        </div>
-                        <div class="form-step w3-animate-right">
-                            <h1>Pricing</h1>
-                            <p class="p-med">Customer payment options</p>
-                            <div class="input-group">
-                                <label>Price / Guest</label>
-                                <input type="text" name="price">
-                            </div>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-prev"><span>Back</span></a>
-                                <a href="#" class="btn btn-next"><span>Continue</span></a>
-                            </div>
-                        </div>
-                        <div class="form-step w3-animate-right">
-                            <h1>Photos</h1>
-                            <p class="p-med">What does your room look like?</p>
-                            <div class="input-group">
-                                <label>Add atleast one photo now. You can always add more later.</label>
-                                <div class="cord">
-                                    <div class="top">
-                                        <p>Drag & drop image uploading</p>
-                                    </div>
-                                    <form action="/upload" class="upload_img">
-                                        <span class="inner">Drag & drop image here or <span class="selectt">Browse</span></span>
-                                        <input type="file" name="image[]" id="files" multiple>
-                                    </form>
-                                    <div class="containerr"></div>
-                                </div>
-                            </div>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-prev"><span>Back</span></a>
-                                <button type="submit" name="submit" class="btn"><span>Add</span></button>
-                            </div>
-                        </div>
-                       
-                    </form>
-                </div>
-
-                <div class="units-wrapper">
+                <button class="btn-skeletal" id="show-login">+ Add Room</button>
                     <?php
                     $room_id;
                     foreach($property as $properties){
@@ -197,18 +122,18 @@ $property = $table->getProperty($_SESSION['partnerid']);
                                                 ?>
                                                 <tr>
                                                     
-                                                    <td class="text-center"><?php echo $rooms['room_number']?></td>
-                                                    <td class="text-center"><?php echo $rooms['tenants']. "/" .$rooms['slots']?></td>
-                                                    <td class="text-center"><?php echo $rooms['price']?></td>
+                                                    <td class="text-center td-room"><?php echo $rooms['room_number']?></td>
+                                                    <td class="text-center td-room"><?php echo $rooms['tenants']. "/" .$rooms['slots']?></td>
+                                                    <td class="text-center td-room"><?php echo $rooms['price']?></td>
                                                     
                                                     <?php if($rooms['status'] == 1): ?>
-                                                    <td class="text-center"><span class="badge badge-success"><span class="status green"></span>Available</span></td>
+                                                    <td class="text-center td-room"><span class="badge badge-success"><span class="status green"></span>Available</span></td>
                                                     <?php elseif($rooms['status'] == 0): ?>
-                                                    <td class="text-center"><span class="badge badge-default"><span class="status red"></span>Unavailable</span></td>
+                                                    <td class="text-center td-room"><span class="badge badge-default"><span class="status red"></span>Unavailable</span></td>
                                                     <?php else: ?>
-                                                    <td class="text-center"><span class="badge badge-default"><span class="status orange"></span>Maintenance</span></td>
+                                                    <td class="text-center td-room"><span class="badge badge-default"><span class="status orange"></span>Maintenance</span></td>
                                                     <?php endif; ?>
-                                                    <td class="text-center">
+                                                    <td class="text-center td-room">
                                                         <button class="cd-popup-trigger-update action button-approve update-room" data-room_id="<?php echo $rooms['id'] ?>" data-room_number="<?php echo $rooms['room_number'] ?>" data-room_slots="<?php echo $rooms['slots'] ?>" data-room_price="<?php echo $rooms['price'] ?>" type="button">Edit</button>
                                                         <button class="cd-popup-trigger action button-cancel del-room" data-room_id="<?php echo $rooms['id'] ?>" type="button">Delete</button>
                                                     </td>
@@ -221,6 +146,7 @@ $property = $table->getProperty($_SESSION['partnerid']);
                             </div>
                         </div>
                     <?php } ?>
+                    
                     <form action="include/delete-room-inc.php" method="post">
                         <div class="cd-popup" role="alert">
                             <div class="cd-popup-container">
@@ -270,15 +196,12 @@ $property = $table->getProperty($_SESSION['partnerid']);
                         </div>
                     </form>
                 </div>
-                <!-- </div> -->
-                <!-- Added Units Table -->
-
-
             </div>
         </main>
     </div>
     <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
     <script src="popup.js"></script>
+    <script src="javascript.js"></script>
 </body>
 <script type="text/javascript" src="multi-step.js"></script>
 <!-- <script src="js-upload.js"></script> -->

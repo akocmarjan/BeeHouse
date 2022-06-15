@@ -6,6 +6,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Profile</title>
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
@@ -27,7 +28,7 @@ session_start();
                     <span>Roommate</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="fas fa-home"></span>
+                    <a href="dashboard-tenant-currenthome.php"><span class="fas fa-home"></span>
                     <span>Current Home</span></a>
                 </li>
                 <li>
@@ -35,8 +36,8 @@ session_start();
                     <span>Application</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-user-circle"></span>
-                    <span>Accounts</span></a>
+                    <a href="lisitng.php"><span class="fas fa-user-circle"></span>
+                    <span>Home</span></a>
                 </li>
                 <li>
                     <a href="logout.php"><span class="fas fa-sign-out-alt"></span>
@@ -51,8 +52,8 @@ session_start();
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
-                    Dashboard
                 </label>
+                Dashboard
             </h2>
 
             <div class="search-wrapper">

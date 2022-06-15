@@ -61,8 +61,8 @@ $category = $table->getCategory();
                     <span>Applicants</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-user-circle"></span>
-                    <span>Accounts</span></a>
+                    <a href="listing.php"><span class="fas fa-user-circle"></span>
+                    <span>Home</span></a>
                 </li>
                 <li>
                     <a href="logout.php"><span class="fas fa-sign-out-alt"></span>
@@ -99,7 +99,6 @@ $category = $table->getCategory();
 
         <main>
             <div class="units-grid">
-
                 <!-- Added Units Table -->
                 <div class="units-wrapper">
                     <div class="units">
@@ -129,13 +128,13 @@ $category = $table->getCategory();
                                             ?>
                                             <tr class="inputss">
                                                 <td><?php echo $counter."." ?></td>
-                                                <td class="text-center"><?php echo $properties['property_name']?></td>
-                                                <td class="text-center"><?php echo $properties['category_name']?></td>
-                                                <td class="text-center"><?php echo $properties['barangay'].", ".$properties['city'].", ".$properties['province']?></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center">
+                                                <td class="text-center td-pro"><?php echo $properties['property_name']?></td>
+                                                <td class="text-center td-pro"><?php echo $properties['category_name']?></td>
+                                                <td class="text-center td-pro"><?php echo $properties['barangay'].", ".$properties['city'].", ".$properties['province']?></td>
+                                                <td class="text-center td-pro"></td>
+                                                <td class="text-center td-pro">
                                                     <button class="show-update action button-approve update-property" type="button" data-property_id="<?php echo $properties['property_id'] ?>" data-property_name="<?php echo $properties['property_name'] ?>" data-property_category="<?php echo $properties['category_id'] ?>" data-property_region="<?php echo $properties['region'] ?>" data-property_province="<?php echo $properties['province'] ?>" data-property_city="<?php echo $properties['city'] ?>" data-property_barangay="<?php echo $properties['barangay'] ?>" data-property_postal="<?php echo $properties['postal'] ?>" data-property_availablefor="<?php echo $properties['available_for'] ?>">Edit</button>
-                                                    <button class="cd-popup-trigger action button-cancel" type="button">Delete</button>
+                                                    <button class="cd-popup-trigger action button-cancel del-property" data-property_id="<?php echo $properties['property_id'] ?>" type="button">Delete</button>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -144,7 +143,7 @@ $category = $table->getCategory();
                                                     <div class="cd-popup-container">
                                                         <p>Are you sure you want to delete this property?</p>
                                                         <ul class="cd-buttons" style="list-style: none;">
-                                                            <input type="hidden" name="property_id" value=<?php echo $properties['property_id'] ?>>
+                                                            <input type="hidden" name="del_property_id" id="del_property_id">
                                                             <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
                                                             <li><input type="button" class="cd-button-no" value="No"></input></li>
                                                         </ul>
@@ -156,13 +155,11 @@ $category = $table->getCategory();
                                     </table>
                                 </div>
                             </div>
-                            <button class="btn-skeletal" id="show-login">+ Add Units</button>
+                            <button class="btn-skeletal" id="show-login">+ Add Property</button>
                         </div>
                     </div>
                 </div>
                 <!-- Added Units Table -->
-
-
             </div>
         </main>
     </div>

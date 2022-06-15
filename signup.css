@@ -101,7 +101,7 @@ nav{
         display: inline-block;
         width: 100%;
         padding: 100px 7% 0;
-        background: black;
+        /* background: black; */
         text-align: right;
     }
     nav .nav-links li{
@@ -393,6 +393,96 @@ select{
     color: var(--main-color);
 }
 
+@media only screen and (max-width: 700px){
+    .form-cat{
+        margin-top: 20%;
+        width:auto;
+        /* margin: 0 auto; */
+        border-radius: 0.35rem;
+        padding: 1.5rem;
+        background: #f1f5f9;
+    }
+    .form-cat h1{
+        font-size: 14px;
+        font-weight: 300;
+    }
+    .card{
+        width: clamp(450    px, 30%, 430px);
+        margin: 1.5rem auto;
+        border-radius: 0.35rem;
+        padding: 1.5rem;
+        background: var(--main);
+        border: 1px solid #ccc;
+        text-align: center;
+        display: flex;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .card p{
+        font-size: 13px;
+    }
+    .card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+    }
+    .box{
+        width: 40%;
+        margin-right: 2rem;
+        border-radius: 0.35rem;
+        padding: 1.5rem;
+        background: var(--main-color);
+        text-align: center;
+    }
+    .box h2{
+        font-size: 16px;
+    }
+    .fas{
+        /*  */
+        font-size: 40px;
+    }
+    .description{
+        width: 50%;
+        text-align: left;
+    }
+    a{
+        text-decoration: none;
+    }
+    
+    .line{
+        margin: 1.5rem 0;
+        background-color: #ccc;
+        height: 1px;;
+        border: none;
+    }
+
+    .error-handling{
+        background: rgb(248, 47, 47);
+        padding: 5px;
+        margin: 5px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .error-handling i{
+        font-size: large;
+    }
+    .form{
+        margin-top: 25%;
+        width: auto;
+        border-radius: 0.35rem;
+        padding: 1.5rem;
+        background: #f1f5f9;
+    }
+    .form-step{
+        display: none;
+    }
+    .form-step-active{
+        display: block;
+    }
+    .input-group{
+        margin: 0.5rem 0;
+    }
+
+  }
 
 
 

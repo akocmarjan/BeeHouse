@@ -3,11 +3,13 @@ session_start();
 include('functions.php');
 
 $application = $table->getApplication($_SESSION['userid']);
+print_r($_SESSION['userid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Application</title>
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
@@ -29,7 +31,7 @@ $application = $table->getApplication($_SESSION['userid']);
                     <span>Roommate</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="fas fa-home"></span>
+                    <a href="dashboard-tenant-currenthome.php"><span class="fas fa-home"></span>
                     <span>Current Home</span></a>
                 </li>
                 <li>
@@ -37,8 +39,8 @@ $application = $table->getApplication($_SESSION['userid']);
                     <span>Application</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="fas fa-user-circle"></span>
-                    <span>Accounts</span></a>
+                    <a href="listing.php"><span class="fas fa-user-circle"></span>
+                    <span>Home</span></a>
                 </li>
                 <li>
                     <a href="logout.php"><span class="fas fa-sign-out-alt"></span>
@@ -53,8 +55,8 @@ $application = $table->getApplication($_SESSION['userid']);
             <h2>
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
-                    Dashboard
                 </label>
+                Application
             </h2>
 
             <div class="search-wrapper">
@@ -84,7 +86,7 @@ $application = $table->getApplication($_SESSION['userid']);
                                 <table width="100%">
                                     <thead>
                                         <tr>
-                                            <td>Unit name</td>
+                                            <td>Property name</td>
                                             <td>Address</td>
                                             <td>Room Number</td>
                                             <td>Price</td>
@@ -94,16 +96,16 @@ $application = $table->getApplication($_SESSION['userid']);
                                     </thead>
                                         <?php foreach($application as $applications){ ?>
                                         <tbody>
-                                            <td><?php echo $applications['property_name'] ?></td>
-                                            <td><?php echo $applications['barangay'].", ".$applications['city'] ?></td>
-                                            <td><?php echo $applications['room_number'] ?></td>
-                                            <td><?php echo $applications['price'] ?></td>
+                                            <td class="text-center td-app"><?php echo $applications['property_name'] ?></td>
+                                            <td class="text-center td-app"><?php echo $applications['barangay'].", ".$applications['city'] ?></td>
+                                            <td class="text-center td-app"><?php echo $applications['room_number'] ?></td>
+                                            <td class="text-center td-app"><?php echo $applications['price'] ?></td>
                                             <?php if($applications['status'] == 0): ?>
-                                            <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
+                                            <td class="text-center td-app"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
                                             <?php else: ?>
-                                            <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
+                                            <td class="text-center td-app"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
                                             <?php endif; ?>
-                                            <td class="text-center">
+                                            <td class="text-center td-app">
                                                 <button class="cd-popup-trigger action button-cancel" type="button">Cancel</button>
                                             </td>
                                             <td><?php  ?></td>
