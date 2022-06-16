@@ -79,4 +79,13 @@ jQuery(document).ready(function($){
 		$('.update-popup-bg').removeClass('active');
 		$('.update-popup').removeClass('active');
 	});
+
+	$('.del-tenant').on('click', function(event){
+		document.getElementById('del_tenant_id').setAttribute('value', $(this).attr('data-tenant_id'));
+		document.getElementById('del_room_id').setAttribute('value', $(this).attr('data-tenant_room_id'));
+	});
+
+	$('.add-application').on('click', function(event){
+		document.getElementById('room_id').setAttribute('value', $(this).attr('data-room_id'));
+	});
 });

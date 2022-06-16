@@ -13,6 +13,7 @@ class SigninContr extends Signin{
     public function signinUser(){
         if($this->emptyInput() == false){
             // echo "Empty input!";
+            $_SESSION['signin'] = true;
             $_SESSION['flash'] = 'emptyinput';
             header("location: ../index.php?error=emptyinput");
             exit();

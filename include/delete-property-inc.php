@@ -9,8 +9,8 @@ if(isset($_POST['submit']))
     include '../classes/delete-contr-classes.php';
 
     $deleteproperty = new DeleteContr($property_id);
-
     $deleteproperty->deleteProperty();
+    $deleteproperty->deleteImage();
 
     header("location: ../dashboard-partner-property.php?error=none");
 }

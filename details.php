@@ -17,7 +17,7 @@ $rooms = $table->getRoom($unit_id);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bee House</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="images/icon.png">
+        <link rel="icon" href="android-icon-36x36.png">
         <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
         
     </head>
@@ -54,7 +54,7 @@ $rooms = $table->getRoom($unit_id);
                         <div><img src="images/house-5.png"></div>
                     </div>
                     <div class="small-details">
-                        <h2>Hosted by <?php echo $properties['username'] ?></h2>
+                        <h2>Hosted by <?php echo $properties['first_name']." ".$properties['last_name'] ?></h2>
                         <p>2 guest &nbsp; 2 beds &nbsp; &nbsp; 1 bathroom</p>
                     </div>
                 </form>
@@ -85,7 +85,7 @@ $rooms = $table->getRoom($unit_id);
                             <?php
                                 if(isset($_SESSION['userid'])){
                             ?>
-                            <button class="cd-popup-trigger button-details" value="Check in" ><span>Check in</span></button>
+                            <button class="cd-popup-trigger button-details add-application" data-room_id="<?php echo $room['id'] ?>" value="Check in" ><span>Check in</span></button>
                             <?php
                                 }else{
                             ?>
@@ -105,7 +105,7 @@ $rooms = $table->getRoom($unit_id);
                         <div class="cd-popup-container">
                             <p>Are you sure you want check in?</p>
                             <ul class="cd-buttons" style="list-style: none;">
-                                <input type="hidden" name="room_id" value=<?php echo $room['id'] ?>>
+                                <input type="hidden" name="room_id" id="room_id">
                                 <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
                                 <li><input type="button" class="cd-button-no" value="No"></input></li>
                             </ul>
@@ -133,7 +133,7 @@ $rooms = $table->getRoom($unit_id);
                 <div class="host">
                     <img src="images/host.png">
                     <div>
-                        <h2>Hosted by <?php echo $properties['username'] ?></h2>
+                        <h2>Hosted by <?php echo $properties['first_name']." ".$properties['last_name'] ?></h2>
                         <p><span>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>

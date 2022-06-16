@@ -8,6 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Profile</title>
+    <link rel="icon" href="android-icon-36x36.png">
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>
@@ -36,7 +37,7 @@ session_start();
                     <span>Application</span></a>
                 </li>
                 <li>
-                    <a href="lisitng.php"><span class="fas fa-user-circle"></span>
+                    <a href="listing.php"><span class="fas fa-user-circle"></span>
                     <span>Home</span></a>
                 </li>
                 <li>

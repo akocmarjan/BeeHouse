@@ -14,6 +14,6 @@ if(isset($_POST['submit']))
 
     $addapplication->addApplication();
 
-    header("location: ../listing.php?error=none");
+    header("location: ../dashboard-application.php?error=none");
 }
 ?>

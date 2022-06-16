@@ -31,9 +31,6 @@ if(isset($_POST['submit'])){
 }
 
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -42,12 +39,26 @@ if(isset($_POST['submit'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bee House</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="images/icon.png">
+        <link rel="icon" href="android-icon-36x36.png">
         <link rel="stylesheet" href="navbar.css">
         <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
         
     </head>
     <body style="background-image:  linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),url(images/banner2.png);">
+        <?php if(isset($_SESSION['flash'])):
+            if($_SESSION['flash'] == 'alreadyapplied'){?>
+                <div class="notif-popup">
+                    <i class="fas fa-times-circle"></i>
+                    <p>Already applied, cancel first your last application.</p>
+                    <button class="notif-trigger">Continue</button>
+                </div>
+                <?php }elseif($_SESSION['flash'] == 'roomtenant'){ ?>
+                <div class="notif-popup">
+                    <i class="fas fa-times-circle"></i>
+                    <p>You are already a room tenant. Wait for your contract to end or cancel via your landlord</p>
+                    <button class="notif-trigger">Continue</button>
+                </div>
+        <?php unset($_SESSION['flash']); } endif; ?>
 
         <?php include_once ('template.include/header.php') ?>
         <?php include_once ('template.include/signin-popup.php') ?>
@@ -83,7 +94,7 @@ if(isset($_POST['submit'])){
                                 }else{
                                     echo "Male and Female";
                                 } ?></h4>
-                                <p>1 Bedroom/1 Bathroom</p>
+                                <!-- <p>1 Bedroom/1 Bathroom</p> -->
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -145,6 +156,8 @@ if(isset($_POST['submit'])){
        
         <?php include_once ('template.include/footer.php') ?>
         <script src="javascript.js"></script>
+        <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+        <script src="notif.js"></script>
     </body>
 </html>
 <script>

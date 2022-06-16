@@ -10,7 +10,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard - Application</title>
-    <link rel="icon" href="images/icon.png">
+    <link rel="icon" href="android-icon-36x36.png">
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>
@@ -80,67 +80,69 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
         </header>
 
         <main>
-            <div class="recent-grid">
-                <div class="projects">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Applications</h3>
-                            <button>See all <span class=""fas fa-arrow-right></span></button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table width="100%">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Gender</td>
-                                            <td>Unit name</td>
-                                            <td>Room number</td>
-                                            <td>Status</td>
-                                            <td>Action</td>
-                                        </tr>
-                                    </thead>
-                                        <?php foreach($applicant as $applicants){ ?>
-                                        <tbody>
-                                            <td><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
-                                            <td><?php if($applicants['gender'] == 1){
-                                                echo "Male";
-                                            }else{
-                                                echo "Female";
-                                            } ?></td>
-                                            <td><?php echo $applicants['property_name'] ?></td>
-                                            <td><?php echo $applicants['room_number'] ?></td>
-                                            <?php if($applicants['status'] == 0): ?>
-                                            <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
-                                            <?php else: ?>
-                                            <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
-                                            <?php endif; ?>
-                                            <form action="include/delete-application-inc.php" method="post">
-                                                <td class="text-center">
-                                                    <input type="hidden" name="application_id" value=<?php echo $applicants['applicants_id'] ?>>
-                                                    <button class="cd-popup-trigger action button-approve" type="button">Approve</button>
-                                                    <button class="action button-cancel" name="submit" type="submit">Reject</button>
-                                                </td>
-                                            </form>
-                                            <td><?php  ?></td>
-                                        </tbody>
-                                        <form action="include/add-tenant-inc.php" method="post">
-                                            <div class="cd-popup" role="alert">
-                                                <div class="cd-popup-container">
-                                                    <p>Are you sure you want to accept?</p>
-                                                    <ul class="cd-buttons" style="list-style: none;">
+            <div class="units-grid">
+                <div class="units-wrapper">
+                    <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Applications</h3>
+                                <button>See all <span class=""fas fa-arrow-right></span></button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Gender</td>
+                                                <td>Unit name</td>
+                                                <td>Room number</td>
+                                                <td>Status</td>
+                                                <td>Action</td>
+                                            </tr>
+                                        </thead>
+                                            <?php foreach($applicant as $applicants){ ?>
+                                            <tbody>
+                                                <td><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
+                                                <td><?php if($applicants['gender'] == 1){
+                                                    echo "Male";
+                                                }else{
+                                                    echo "Female";
+                                                } ?></td>
+                                                <td><?php echo $applicants['property_name'] ?></td>
+                                                <td><?php echo $applicants['room_number'] ?></td>
+                                                <?php if($applicants['status'] == 0): ?>
+                                                <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
+                                                <?php else: ?>
+                                                <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
+                                                <?php endif; ?>
+                                                <form action="include/delete-applicants-inc.php" method="post">
+                                                    <td class="text-center">
                                                         <input type="hidden" name="application_id" value=<?php echo $applicants['applicants_id'] ?>>
-                                                        <input type="hidden" name="room_id" value=<?php echo $applicants['room_id'] ?>>
-                                                        <input type="hidden" name="user_id" value=<?php echo $applicants['user_id'] ?>>
-                                                        <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
-                                                        <li><input type="button" class="cd-button-no" value="No"></input></li>
-                                                    </ul>
-                                                    <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                                        <button class="cd-popup-trigger action button-approve" type="button">Approve</button>
+                                                        <button class="action button-cancel" name="submit" type="submit">Reject</button>
+                                                    </td>
+                                                </form>
+                                                <td><?php  ?></td>
+                                            </tbody>
+                                            <form action="include/add-tenant-inc.php" method="post">
+                                                <div class="cd-popup" role="alert">
+                                                    <div class="cd-popup-container">
+                                                        <p>Are you sure you want to accept?</p>
+                                                        <ul class="cd-buttons" style="list-style: none;">
+                                                            <input type="hidden" name="application_id" value=<?php echo $applicants['applicants_id'] ?>>
+                                                            <input type="hidden" name="room_id" value=<?php echo $applicants['room_id'] ?>>
+                                                            <input type="hidden" name="user_id" value=<?php echo $applicants['user_id'] ?>>
+                                                            <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
+                                                            <li><input type="button" class="cd-button-no" value="No"></input></li>
+                                                        </ul>
+                                                        <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
-                                        <?php } ?>
-                                </table>
+                                            </form>
+                                            <?php } ?>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

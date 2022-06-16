@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </section>
-            <?php if (isset($_SESSION['flash'])): ?>
+            <?php if (isset($_SESSION['signin']) == true): ?>
             <div class="error-handling">
                     <?php if($_SESSION['flash'] == "emptyinput"){ ?>
                         <i class="fas fa-exclamation-circle"></i>
@@ -83,7 +83,7 @@
                         document.querySelector(".popup-bg").classList.add("active");
                     </script>
             </div>
-            <?php endif;  unset($_SESSION['flash']);?>
+            <?php endif;  unset($_SESSION['flash']); unset($_SESSION['signin']);?>
         </div>
     </div>
 </div>

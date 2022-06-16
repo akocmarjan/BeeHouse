@@ -13,12 +13,31 @@ class Addapplication extends Dbh{
         $result = null;
     }
 
-    protected function checkUser($user_id, $room_id){
-        $result = $this->connect()->prepare("SELECT id FROM applicants WHERE user_id = ? AND room_id = ?;");
+    protected function checkUser($user_id){
+        $result = $this->connect()->prepare("SELECT id FROM applicants WHERE user_id = ?;");
 
-        if(!$result->execute(array($user_id, $room_id))){
+        if(!$result->execute(array($user_id))){
             $result = null;
             header("location: ../listing.php?error=sqlfailed");
+            exit();
+        }
+
+       $resultCheck;
+       if($result->rowCount() > 0){
+           $resultCheck = false;
+       }else{
+           $resultCheck = true;
+       }
+
+       return $resultCheck;
+    }
+
+    protected function checkIfRoomTenant($user_id){
+        $result = $this->connect()->prepare("SELECT id FROM tenant WHERE user_id = ?;");
+
+        if(!$result->execute(array($user_id))){
+            $result = null;
+            header("location: ../listing.php?error=sqlchecktenantfailed");
             exit();
         }
 

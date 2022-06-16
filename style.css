@@ -4,6 +4,8 @@
     --color-dark: #634E00;
     --text-grey: #8390A2;
     --main:#f1f5f9;
+    --green-color:#4CAF50;
+    --red-color:#f44336; 
 }
 
 *{
@@ -42,10 +44,15 @@ body{
 }
 .notif-popup i{
     font-size: 32px;
+}
+.notif-popup .fa-check-circle{
     color: #3e8e41;
 }
+.notif-popup .fa-times-circle{
+    color: var(--red-color);
+}
 .notif-popup button{
-    background-color: #4CAF50; /* Green */
+    background-color: #F9A300; /* Green */
     border: none;
     color: white;
     padding: 5px 5px;

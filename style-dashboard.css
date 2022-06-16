@@ -200,6 +200,18 @@ main{
 .card{
     background: #fff;
 }
+.card h2{
+    margin-left: 1rem;
+    text-decoration: underline;
+}
+.card h3{
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    width: fit-content;
+    border: 1px solid var(--main-color);
+    padding: 3px;
+    border-radius: 5px;
+}
 .card-body,
 .card-header{
     padding: 1rem;

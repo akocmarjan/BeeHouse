@@ -18,13 +18,15 @@ $property = $table->getProperty($_SESSION['partnerid']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard - Rooms</title>
-    <link rel="icon" href="images/icon.png">
+    <link rel="icon" href="android-icon-36x36.png">
     <link rel="stylesheet" href="style-dashboard.css">
+    <link rel="stylesheet" href="notif.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
    
 
 </head>
 <body>
+    <?php include 'template.include/notif-inc.php';?>
     <?php include 'template.include/add-room-popup.php';?>
     <input type="checkbox"  id="nav-toggle">
     <div class="sidebar">
@@ -201,6 +203,7 @@ $property = $table->getProperty($_SESSION['partnerid']);
     </div>
     <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
     <script src="popup.js"></script>
+    <script src="notif.js"></script>
     <script src="javascript.js"></script>
 </body>
 <script type="text/javascript" src="multi-step.js"></script>

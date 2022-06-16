@@ -13,7 +13,14 @@ class AddapplicationContr extends Addapplication{
     public function addApplication(){
         if($this->applicationCheck() == false){
             // echo "Already applied!";
+            $_SESSION['flash'] = 'alreadyapplied';
             header("location: ../listing.php?error=alreadyapplied");
+            exit();
+        }
+        if($this->roomTenantCheck() == false){
+            // echo "Already applied!";
+            $_SESSION['flash'] = 'roomtenant';
+            header("location: ../listing.php?error=roomtenant");
             exit();
         }
 
@@ -22,7 +29,17 @@ class AddapplicationContr extends Addapplication{
 
     private function applicationCheck(){
         $result;
-        if(!$this->checkUser($this->user_id, $this->room_id)){
+        if(!$this->checkUser($this->user_id)){
+            $result = false;
+        }else{
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function roomTenantCheck(){
+        $result;
+        if(!$this->checkIfRoomTenant($this->user_id)){
             $result = false;
         }else{
             $result = true;

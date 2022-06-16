@@ -16,7 +16,7 @@ $lease = $table->getCurrentHome($_SESSION['userid']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard - Tenants</title>
-    <link rel="icon" href="images/icon.png">
+    <link rel="icon" href="android-icon-36x36.png">
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>

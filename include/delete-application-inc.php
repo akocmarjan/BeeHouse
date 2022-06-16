@@ -12,6 +12,6 @@ if(isset($_POST['submit']))
 
     $deleteapplication->deleteApplication();
 
-    header("location: ../dashboard-partner-applicants.php?error=none");
+    header("location: ../dashboard-application.php?error=none");
 }
 ?>

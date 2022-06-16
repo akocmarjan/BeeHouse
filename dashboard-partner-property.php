@@ -22,7 +22,8 @@ $category = $table->getCategory();
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard - Property</title>
     <link rel="stylesheet" href="style-dashboard.css">
-    <link rel="icon" href="images/icon.png">
+    <link rel="stylesheet" href="notif.css">
+    <link rel="icon" href="android-icon-36x36.png">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
     
 
@@ -30,6 +31,8 @@ $category = $table->getCategory();
     
 </head>
 <body>
+
+    <?php include 'template.include/notif-inc.php';?>
     <?php include 'template.include/add-property-popup.php';?>
     <?php include 'template.include/update-property-popup.php'; ?>
     
@@ -103,6 +106,7 @@ $category = $table->getCategory();
                 <div class="units-wrapper">
                     <div class="units">
                         <div class="card">
+                        <button class="btn-skeletal" id="show-login">+ Add Property</button>
                             <div class="card-header">
                                 <h3>Added Property</h3>
                                 <button>See all <span class=""fas fa-arrow-right></span></button>
@@ -155,7 +159,6 @@ $category = $table->getCategory();
                                     </table>
                                 </div>
                             </div>
-                            <button class="btn-skeletal" id="show-login">+ Add Property</button>
                         </div>
                     </div>
                 </div>
@@ -167,6 +170,7 @@ $category = $table->getCategory();
 <script type="text/javascript" src="multi-step.js"></script>
 <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script>
 <script src="popup.js"></script>
+<script src="notif.js"></script>
 <script src="javascript.js"></script>
 
 </body>

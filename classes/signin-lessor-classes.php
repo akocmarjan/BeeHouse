@@ -12,6 +12,7 @@ class Signin extends Dbh{
 
         if($result->rowCount() == 0){
             $result = null;
+            $_SESSION['signin'] = true;
             $_SESSION['flash'] = 'usernotfound';
             header("Location: ../index.php?error=usernotfound");
             exit();
@@ -22,6 +23,7 @@ class Signin extends Dbh{
 
         if($checkPwd == false){
             $result = null;
+            $_SESSION['signin'] = true;
             $_SESSION['flash'] = 'wrongpassword';
             header("Location: ../index.php?error=wrongpassword");
             exit();
@@ -42,6 +44,7 @@ class Signin extends Dbh{
 
             if($result->rowCount() == 0){
                 $result = null;
+                $_SESSION['signin'] = true;
                 $_SESSION['flash'] = 'usernotfound';
                 header("Location: ../index.php?error=usernotfound");
                 exit();

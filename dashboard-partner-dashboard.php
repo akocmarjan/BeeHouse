@@ -9,9 +9,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-// $sum = $table->getSUM($_SESSION['userid']);
-
+$sum = $table->getSUM($_SESSION['partnerid']);
+$sumincome = $table->getSUMIncome($_SESSION['partnerid']);
 $count = $table->getCOUNT($_SESSION['partnerid']);
+$countapp = $table->getCOUNTAPP($_SESSION['partnerid']);
 $applicant = $table->getApplicants($_SESSION['partnerid']);
 ?>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Dashboard</title>
-    <link rel="icon" href="images/icon.png">
+    <link rel="icon" href="android-icon-36x36.png">
     <link rel="stylesheet" href="style-dashboard.css">
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>
@@ -90,11 +91,13 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
         <main>
             <?php
            foreach($count as $counts){}
+           foreach($sum as $sums){}
+           foreach($sumincome as $sumincomes){}
             ?>
             <div class="cards">
                 <div class="card-single">
                     <div>
-                        <h1>0</h1>
+                         <h1><?php echo $sums['SUM(tenants)']?></h1>
                         <span>Tenants</span>
                     </div>
                     <div>
@@ -112,7 +115,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                 </div>
                 <div class="card-single">
                     <div>
-                        <h1>0</h1>
+                        <h1><?php echo $countapp ?></h1>
                         <span>Applicants</span>
                     </div>
                     <div>
@@ -121,7 +124,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                 </div>
                 <div class="card-single">
                     <div>
-                        <h1>$25000/Month</h1>
+                        <h1><?php echo "P ".$sumincomes['sum(price)']?></h1>
                         <span>Estimated Income</span>
                     </div>
                     <div>
@@ -152,7 +155,11 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                                     <?php foreach($applicant as $applicants){ ?>
                                     <tbody>
                                         <td class="text-center td-db"><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
-                                        <td class="text-center td-db"><?php echo $applicants['gender'] ?></td>
+                                        <td class="text-center td-tena"><?php if($applicants['gender'] == 1){
+                                            echo "Male";
+                                        }else{
+                                            echo "Female";
+                                        } ?></td>
                                         <td class="text-center td-db"><?php echo $applicants['property_name'] ?></td>
                                         <td class="text-center td-db"><?php echo $applicants['room_number'] ?></td>
                                         <?php if($applicants['status'] == 0): ?>
@@ -174,7 +181,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                         <button>See all <span class=""fas fa-arrow-right></span></button>
                     </div>
                 <div class="card-body">
-                    <div class="customer">
+                    <!-- <div class="customer">
                         <div class="info">
                             <img src="images/user.png" width="40px" height="40px" alt="">
                             <div>
@@ -187,7 +194,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                             <span class="fas fa-comment"></span>
                             <span class="fas fa-phone"></span>
                         </div>
-                    </div>
+                    </div> -->
                     
                 </div>
             </div>

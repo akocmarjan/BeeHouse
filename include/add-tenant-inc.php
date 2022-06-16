@@ -12,14 +12,14 @@ if(isset($_POST['submit']))
     include '../classes/delete-application-classes.php';
     include '../classes/delete-application-contr-classes.php';
     include '../classes/update-classes.php';
-    include '../classes/update-room.addtenant-contr-classes.php';
+    include '../classes/update-room.addsubtenant-contr-classes.php';
 
 
     $addtenant = new AddtenantContr($room_id, $user_id);
     $addtenant->addTenant();
 
     $inctenant = new UpdateRoomAddContr($room_id);
-    $inctenant->updateRoom();
+    $inctenant->updateAddOneTenant();
 
     $deleteapplication = new DeleteapplicationContr($application_id);
     $deleteapplication->deleteApplication();

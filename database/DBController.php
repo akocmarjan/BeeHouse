@@ -1,5 +1,8 @@
 <?php
-
+// "Driver={MySQL ODBC 8.0 UNICODE Driver};Server=MYSQL8002.site4now.net;
+// Database=db_a881cd_mydb;
+// Uid=a881cd_mydb;
+// Password=YOUR_DB_PASSWORD"
 class DBController{
     // Database Connection Properties
     protected $host = 'localhost';

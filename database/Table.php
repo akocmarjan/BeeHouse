@@ -51,7 +51,7 @@ class Table{
     }
 
     public function getDatawParam($propertyID='21'){
-        $result = $this->db->con->query("SELECT property_name, barangay, city, available_for, category_name, username
+        $result = $this->db->con->query("SELECT property_name, barangay, city, available_for, category_name, username, first_name, last_name
         FROM property 
         LEFT JOIN category
         ON property.category_id = category.id
@@ -101,18 +101,43 @@ class Table{
         return $resultArray;
     }
 
-    // public function getSUM($lessorid){
-    //     $result = $this->db->con->query("SELECT SUM(tenants)
-    //     FROM property, room
-    //     WHERE property.id = room.property_id AND property.lessor_id = $lessorid");
+    public function getSUM($lessorid){
+        $result = $this->db->con->query("SELECT SUM(tenants)
+        FROM property, room
+        WHERE property.id = room.property_id AND property.lessor_id = $lessorid");
 
-    //     $resultArray = array();
+        $resultArray = array();
 
-    //     while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
-    //         $resultArray[] = $item;
-    //     }
-    //     return $resultArray;
-    // }
+        while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+            $resultArray[] = $item;
+        }
+        return $resultArray;
+    }
+
+    public function getSUMIncome($lessorid){
+        $result = $this->db->con->query("select sum(price) from tenant
+        left join room on room.id = tenant.room_id
+        left join property on property.id = room.property_id
+        WHERE property.lessor_id = $lessorid");
+
+        $resultArray = array();
+
+        while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+            $resultArray[] = $item;
+        }
+        return $resultArray;
+    }
+
+    public function getCOUNTAPP($lessorid){
+        $result = $this->db->con->query("SELECT applicants.id
+        FROM applicants, room, property
+        WHERE property.lessor_id = $lessorid AND room.property_id = property.id
+       	GROUP BY applicants.id");
+
+        $rows = mysqli_num_rows($result);
+    
+        return $rows;
+    }
 
     public function getCategory(){
         $result = $this->db->con->query("SELECT * FROM category");
@@ -150,7 +175,7 @@ class Table{
     }
 
     public function getTenant($id){
-        $result = $this->db->con->query("SELECT first_name, last_name, gender, tenant.status FROM room, tenant, user
+        $result = $this->db->con->query("SELECT tenant.id as tenant_id, room.id as tenant_room_id, first_name, last_name, gender, tenant.status, started_at, due_date, price FROM room, tenant, user
         WHERE tenant.user_id = user.id AND tenant.room_id = $id
         GROUP BY tenant.id");
 
