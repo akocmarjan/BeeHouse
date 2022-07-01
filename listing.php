@@ -16,6 +16,7 @@ if(!isset($_GET['page'])){
 }
 
 
+
 if(isset($_POST['submit'])){
     $search_term = $_POST['search-term'];
     $num_row = $table->getRows($search_term);
@@ -94,7 +95,18 @@ if(isset($_POST['submit'])){
                                 }else{
                                     echo "Male and Female";
                                 } ?></h4>
-                                <!-- <p>1 Bedroom/1 Bathroom</p> -->
+                                <?php $amenity = $table->getAmenity($listing['rand_id']); ?>
+                                
+                                <?php foreach ($amenity as $amenities){ 
+                                     if($amenities['count'] == 0){
+                                        echo "<p>".$amenities['amenity']."</p>"; 
+                                     }elseif($amenities['count'] == 6){
+                                        echo "<p>"."1 ".$amenities['amenity']."/Room"."</p>"; 
+                                     }else{
+                                        echo "<p>".$amenities['count']." ".$amenities['amenity']."</p>"; 
+                                     }
+                                } ?>
+                                
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>

@@ -37,12 +37,16 @@ $lease = $table->getCurrentHome($_SESSION['userid']);
                     <span>Roommate</span></a>
                 </li>
                 <li>
-                    <a href="dashboard-tenant-currenthome.php" class="active"><span class="fas fa-home"></span>
+                    <a href="dashboard-tenant-currenthome.php" ><span class="fas fa-home"></span>
                     <span>Current Home</span></a>
                 </li>
                 <li>
                     <a href="dashboard-application.php"><span class="fas fa-file-alt"></span>
                     <span>Application</span></a>
+                </li>
+                <li>
+                    <a href="dashboard-tenant-contact.php" class="active"><span class="fas fa-file-alt"></span>
+                    <span>Contact</span></a>
                 </li>
                 <li>
                     <a href="listing.php"><span class="fas fa-user-circle"></span>
@@ -62,7 +66,7 @@ $lease = $table->getCurrentHome($_SESSION['userid']);
                 <label for="nav-toggle">
                     <span class="fas fa-bars"></span>
                 </label>
-                Current Home
+                Contact
                 
             </h2>
 
@@ -81,46 +85,7 @@ $lease = $table->getCurrentHome($_SESSION['userid']);
         </header>
 
         <main>
-            <div class="recent-grid">
-                <div class="projects">
-                    <div class="card">
-                        <?php foreach($lease as $leased){ 
-                            $started_date = $leased['started_at'];
-                            $due_date = date('Y-m-d', strtotime($started_date. '+ 1 months'));
-                        ?>
-                        <div class="card-header">
-                            <h1><?php echo $leased['property_name'] ?></h1>
-                            <button>See all <span class=""fas fa-arrow-right></span></button>
-                        </div>
-                        <div class="card-body">
-                            <h3><?php echo "Room ".$leased['room_number'] ?></h3>
-                            <div class="table-responsive">
-                                <table width="100%">
-                                    <thead>
-                                        <tr>
-                                            <td>Date started</td>
-                                            <td>Due amount</td>
-                                            <td>Due date</td>
-                                            <td>Status</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <td class="text-center td-ch"><?php echo $leased['started_at'] ?></td>
-                                        <td class="text-center td-ch"><?php echo "P ".$leased['price'].".00" ?></td>
-                                        <td class="text-center td-ch"><?php echo $due_date ?></td>
-                                        <?php if($leased['tenant_status'] == 0): ?>
-                                        <td class="text-center td-tena td-ch"><span class="badge badge-success"><span class="status orange"></span>Unpaid</span></td>
-                                        <?php else: ?>
-                                        <td class="text-center td-tena td-ch"><span class="badge badge-default"><span class="status green"></span>Paid</span></td>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    <?php } ?>
-                    </div>
-                </div>
-            </div>
+       
         </main>
     </div>
 </body>

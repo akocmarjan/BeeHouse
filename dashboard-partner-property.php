@@ -138,7 +138,7 @@ $category = $table->getCategory();
                                                 <td class="text-center td-pro"></td>
                                                 <td class="text-center td-pro">
                                                     <button class="show-update action button-approve update-property" type="button" data-property_id="<?php echo $properties['property_id'] ?>" data-property_name="<?php echo $properties['property_name'] ?>" data-property_category="<?php echo $properties['category_id'] ?>" data-property_region="<?php echo $properties['region'] ?>" data-property_province="<?php echo $properties['province'] ?>" data-property_city="<?php echo $properties['city'] ?>" data-property_barangay="<?php echo $properties['barangay'] ?>" data-property_postal="<?php echo $properties['postal'] ?>" data-property_availablefor="<?php echo $properties['available_for'] ?>">Edit</button>
-                                                    <button class="cd-popup-trigger action button-cancel del-property" data-property_id="<?php echo $properties['property_id'] ?>" type="button">Delete</button>
+                                                    <button class="cd-popup-trigger action button-cancel del-property" data-property_id="<?php echo $properties['property_id'] ?>" data-rand_id="<?php echo $properties['rand_id'] ?>" type="button">Delete</button>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -148,6 +148,7 @@ $category = $table->getCategory();
                                                         <p>Are you sure you want to delete this property?</p>
                                                         <ul class="cd-buttons" style="list-style: none;">
                                                             <input type="hidden" name="del_property_id" id="del_property_id">
+                                                            <input type="hidden" name="del_rand_id" id="del_rand_id">
                                                             <li><input name="submit" type="submit" class="cd-button-yes" value="Yes"></input></li>
                                                             <li><input type="button" class="cd-button-no" value="No"></input></li>
                                                         </ul>

@@ -55,7 +55,18 @@ $rooms = $table->getRoom($unit_id);
                     </div>
                     <div class="small-details">
                         <h2>Hosted by <?php echo $properties['first_name']." ".$properties['last_name'] ?></h2>
-                        <p>2 guest &nbsp; 2 beds &nbsp; &nbsp; 1 bathroom</p>
+                        <?php $amenity = $table->getAmenity($properties['rand_id']); ?>
+                        <p>
+                        <?php foreach ($amenity as $amenities){ 
+                            if($amenities['count'] == 0){
+                            echo $amenities['amenity']."&nbsp; &nbsp;"; 
+                            }elseif($amenities['count'] == 6){
+                            echo "1 ".$amenities['amenity']."/Room"."&nbsp; &nbsp;"; 
+                            }else{
+                            echo $amenities['count']." ".$amenities['amenity']."&nbsp; &nbsp;"; 
+                            }
+                        } ?>
+                        </p>
                     </div>
                 </form>
                 <hr class="line">

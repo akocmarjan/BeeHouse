@@ -78,6 +78,72 @@
                             <a href="#" class="btn btn-next"><span>Continue</span></a>
                         </div>
                     </div>
+                    <div class="form-step w3-animate-right w3-animate-opacity">
+                        <h1>Amenity</h1>
+                        <p class="p-med">Add useful feature of your property.</p>
+                        <div class="input-group">
+                            <label class="checkboxes">Bathroom
+                            <input type="checkbox" class="check-amenity" name="amenity[]" value="1">
+                            <div class="when-checked">
+                                <p class="p-med">How many bathroom?</p>
+                                <div class="select">
+                                    <select name="amnty-br" id="amnty-br">
+                                        <option selected disabled="">Choose below</option>
+                                        <option value="6">Every room</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label class="checkboxes">Kitchen
+                            <input type="checkbox" class="check-amenity" name="amenity[]" value="2">
+                            <div class="when-checked">
+                                <p class="p-med">How many kitchen?</p>
+                                <div class="select">
+                                    <select name="amnty-kc" id="amnty-kc">
+                                        <option selected disabled="">Choose below</option>
+                                        <option value="6">Every room</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label class="checkboxes">Wifi
+                            <input type="checkbox" class="check-amenity"  name="amenity[]" value="3"> 
+                            <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label class="checkboxes">Air Conditioner
+                            <input type="checkbox" class="check-amenity" name="amenity[]" value="4">
+                            <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label class="checkboxes">Parking Area
+                            <input type="checkbox" class="check-amenity" name="amenity[]" value="5">
+                            <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-prev"><span>Back</span></a>
+                            <a href="#" class="btn btn-next"><span>Continue</span></a>
+                        </div>
+                    </div>
                     <!-- <div class="form-step w3-animate-right">
                         <h1>Map</h1>
                         <p class="p-med">Set location on the map.</p>

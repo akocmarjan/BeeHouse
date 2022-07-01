@@ -3,7 +3,7 @@
         <div class="close-btn">&times;</div>
         <div class="form">
             <h2>Add Room</h2>
-            <form action="include/add-rooms-inc.php" id="postForm" method="" enctype="multipart/form-data">
+            <form action="include/add-rooms-inc.php" id="postForm" method="post" enctype="multipart/form-data">
                 <div class="form-step form-step-active w3-animate-fading w3-animate-opacity">
                     <h1>Room name</h1>
                     <p class="p-med">Input a room name or room number to easily identify rooms.</p>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="btn-group">
                         <a href="#" class="btn btn-prev"><span>Back</span></a>
-                        <button type="submit" name="" class="btn"><span>Add</span></button>
+                        <button type="submit" name="submit" class="btn"><span>Add</span></button>
                     </div>
                 </div>
             </form>

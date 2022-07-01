@@ -38,6 +38,10 @@ class DeleteContr extends Delete{
         $this->setImage($this->id);
     }
 
+    public function deleteAmenity(){
+        $this->setAmenity($this->id);
+    }
+
     private function roomEmptyCheck(){
         $result;
         if(!$this->checkIfRoomEmpty($this->id)){

@@ -48,6 +48,10 @@ jQuery(document).ready(function($){
 		document.getElementById('del_property_id').setAttribute('value', $(this).attr('data-property_id'));
 	});
 
+	$('.del-property').on('click', function(event){
+		document.getElementById('del_rand_id').setAttribute('value', $(this).attr('data-rand_id'));
+	});
+
 
 	$('.del-room').on('click', function(event){
 		document.getElementById('del_room_id').setAttribute('value', $(this).attr('data-room_id'));

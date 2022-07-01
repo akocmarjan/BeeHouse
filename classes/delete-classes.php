@@ -49,6 +49,18 @@ class Delete extends Dbh{
         $result = null;
     }
 
+    protected function setAmenity($id){
+        $result = $this->connect()->prepare("DELETE FROM amenity WHERE rand_id = ?;");
+
+        if(!$result->execute(array($id))){
+            $result = null;
+            header("location: ../listing.php?error=sqlfailed");
+            exit();
+        }
+
+        $result = null;
+    }
+
     protected function checkIfRoomEmpty($id){
         $result = $this->connect()->prepare("SELECT id FROM room WHERE property_id = ?;");
 

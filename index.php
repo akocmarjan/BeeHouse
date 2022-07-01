@@ -9,8 +9,10 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION['
 }elseif(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION['userlogin'] == true){
     header("location: listing.php");
     exit;
+}elseif(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION['adminlogin'] == true){
+    header("location: listing.php");
+    exit;
 }
-
 //require functions.php file
 require ('functions.php');
 ?>

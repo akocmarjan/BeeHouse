@@ -11,8 +11,9 @@ class AddunitsContr extends Addunits{
     private $postal;
     private $lessor_id;
     private $available_for;
+    private $rand_id;
 
-    public function __construct($property_name, $category_id, $region, $province, $city, $barangay, $postal, $lessor_id, $available_for){
+    public function __construct($property_name, $category_id, $region, $province, $city, $barangay, $postal, $lessor_id, $available_for,$rand_id){
         $this->property_name = $property_name;
         $this->category_id = $category_id;
         $this->region = $region;
@@ -22,6 +23,7 @@ class AddunitsContr extends Addunits{
         $this->postal = $postal;
         $this->lessor_id = $lessor_id;
         $this->available_for = $available_for;
+        $this->rand_id = $rand_id;
     }
 
     public function addUnits(){
@@ -31,7 +33,7 @@ class AddunitsContr extends Addunits{
             exit();
         }
 
-        $this->setUnits($this->property_name, $this->category_id, $this->region, $this->province, $this->city, $this->barangay, $this->postal, $this->lessor_id, $this->available_for);
+        $this->setUnits($this->property_name, $this->category_id, $this->region, $this->province, $this->city, $this->barangay, $this->postal, $this->lessor_id, $this->available_for, $this->rand_id);
     }
 
     private function emptyInput(){

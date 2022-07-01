@@ -22,6 +22,8 @@ class Table{
        return $resultArray;
     }
 
+    
+
     public function getUnits($lessorid){
         $result = $this->db->con->query("SELECT units.id, name, address, category_name
         FROM units 
@@ -37,7 +39,7 @@ class Table{
     }
 
     public function getProperty($lessorid){
-        $result = $this->db->con->query("SELECT property.id as property_id, category_id as category_id, property_name, region, province, city, barangay, postal, available_for, category_name
+        $result = $this->db->con->query("SELECT property.id as property_id, category_id as category_id, property_name, region, province, city, barangay, postal, available_for, rand_id, category_name
         FROM property 
         LEFT JOIN category
         ON property.category_id = category.id WHERE property.lessor_id = $lessorid");
@@ -51,7 +53,7 @@ class Table{
     }
 
     public function getDatawParam($propertyID='21'){
-        $result = $this->db->con->query("SELECT property_name, barangay, city, available_for, category_name, username, first_name, last_name
+        $result = $this->db->con->query("SELECT property_name, barangay, city, available_for, category_name, username, first_name, last_name, rand_id
         FROM property 
         LEFT JOIN category
         ON property.category_id = category.id
@@ -78,7 +80,29 @@ class Table{
     }
 
     public function getLessor(){
-        $result = $this->db->con->query("SELECT * FROM lessor");
+        $result = $this->db->con->query("SELECT COUNT(id) FROM lessor");
+
+       $resultArray = array();
+
+       while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+           $resultArray[] = $item;
+       }
+       return $resultArray;
+    }
+
+    public function getUsers(){
+        $result = $this->db->con->query("SELECT COUNT(id) FROM user ");
+
+       $resultArray = array();
+
+       while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+           $resultArray[] = $item;
+       }
+       return $resultArray;
+    }
+
+    public function getPropertyCount(){
+        $result = $this->db->con->query("SELECT COUNT(id) FROM property ");
 
        $resultArray = array();
 
@@ -204,6 +228,18 @@ class Table{
         }
         return $resultArray;
     }
+    public function getAmenity($rand_id){
+        $result = $this->db->con->query("SELECT * FROM amenity
+        LEFT JOIN amenity_category
+        ON amenity.amenity_category_id = amenity_category.id
+        WHERE amenity.rand_id = $rand_id");
+
+        $resultArray = array();
+        while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+            $resultArray[] = $item;
+        }
+        return $resultArray;
+    }
 
     public function getRows($search_term){
         $result = $this->db->con->query("SELECT *
@@ -231,5 +267,6 @@ class Table{
         }
         return $resultArray;
     }
+
 
 }
