@@ -1,7 +1,10 @@
 <?php
 session_start();
 include('functions.php');
-
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: index.php");
+    exit;
+}
 $applicant = $table->getApplicants($_SESSION['partnerid']);
 ?>
 <!DOCTYPE html>
@@ -15,6 +18,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
     <script src="https://kit.fontawesome.com/6ee19359d3.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    
     <input type="checkbox"  id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
@@ -95,6 +99,7 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                                             <tr>
                                                 <td>Name</td>
                                                 <td>Gender</td>
+                                                <td>Contact number</td>
                                                 <td>Unit name</td>
                                                 <td>Room number</td>
                                                 <td>Status</td>
@@ -103,21 +108,22 @@ $applicant = $table->getApplicants($_SESSION['partnerid']);
                                         </thead>
                                             <?php foreach($applicant as $applicants){ ?>
                                             <tbody>
-                                                <td><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
-                                                <td><?php if($applicants['gender'] == 1){
+                                                <td class="td-app2"><?php echo $applicants['first_name'] ?> <?php echo $applicants['last_name'] ?></td>
+                                                <td class="td-app2"><?php if($applicants['gender'] == 1){
                                                     echo "Male";
                                                 }else{
                                                     echo "Female";
                                                 } ?></td>
-                                                <td><?php echo $applicants['property_name'] ?></td>
-                                                <td><?php echo $applicants['room_number'] ?></td>
+                                                <td class="td-app2"><?php echo $applicants['phone'] ?></td>
+                                                <td class="td-app2"><?php echo $applicants['property_name'] ?></td>
+                                                <td class="td-app2"><?php echo $applicants['room_number'] ?></td>
                                                 <?php if($applicants['status'] == 0): ?>
-                                                <td class="text-center"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
+                                                <td class="text-center td-app2"><span class="badge badge-success"><span class="status orange"></span>Pending</span></td>
                                                 <?php else: ?>
-                                                <td class="text-center"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
+                                                <td class="text-center td-app2"><span class="badge badge-default"><span class="status green"></span>Approved</span></td>
                                                 <?php endif; ?>
                                                 <form action="include/delete-applicants-inc.php" method="post">
-                                                    <td class="text-center">
+                                                    <td class="text-center td-app2">
                                                         <input type="hidden" name="application_id" value=<?php echo $applicants['applicants_id'] ?>>
                                                         <button class="cd-popup-trigger action button-approve" type="button">Approve</button>
                                                         <button class="action button-cancel" name="submit" type="submit">Reject</button>

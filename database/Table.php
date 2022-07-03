@@ -153,10 +153,8 @@ class Table{
     }
 
     public function getCOUNTAPP($lessorid){
-        $result = $this->db->con->query("SELECT applicants.id
-        FROM applicants, room, property
-        WHERE property.lessor_id = $lessorid AND room.property_id = property.id
-       	GROUP BY applicants.id");
+        $result = $this->db->con->query("SELECT applicants.id as applicants_id FROM applicants, property, room, user
+        WHERE room.property_id = property.id AND applicants.room_id = room.id AND applicants.user_id = user.id AND property.lessor_id = $lessorid");
 
         $rows = mysqli_num_rows($result);
     
@@ -187,7 +185,7 @@ class Table{
     }
 
     public function getApplicants($id){
-        $result = $this->db->con->query("SELECT applicants.id as applicants_id, room.id as room_id, user.id as user_id, first_name, last_name, gender, property_name, room_number, applicants.status FROM applicants, property, room, user
+        $result = $this->db->con->query("SELECT applicants.id as applicants_id, room.id as room_id, user.id as user_id, first_name, last_name, gender, phone, property_name, room_number, applicants.status FROM applicants, property, room, user
         WHERE room.property_id = property.id AND applicants.room_id = room.id AND applicants.user_id = user.id AND property.lessor_id = $id");
 
         $resultArray = array();

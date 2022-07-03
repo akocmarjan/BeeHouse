@@ -23,6 +23,12 @@ class AddapplicationContr extends Addapplication{
             header("location: ../listing.php?error=roomtenant");
             exit();
         }
+        if($this->roomAvailableCheck() == false){
+            // echo "Room unavailable";
+            $_SESSION['flash'] = 'availability';
+            header("location: ../listing.php?error=notavailable");
+            exit();
+        }
 
         $this->setApplication($this->room_id, $this->user_id);
     }
@@ -40,6 +46,16 @@ class AddapplicationContr extends Addapplication{
     private function roomTenantCheck(){
         $result;
         if(!$this->checkIfRoomTenant($this->user_id)){
+            $result = false;
+        }else{
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function roomAvailableCheck(){
+        $result;
+        if(!$this->checkIfRoomAvailable($this->room_id)){
             $result = false;
         }else{
             $result = true;

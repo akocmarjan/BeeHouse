@@ -59,6 +59,12 @@ if(isset($_POST['submit'])){
                     <p>You are already a room tenant. Wait for your contract to end or cancel via your landlord</p>
                     <button class="notif-trigger">Continue</button>
                 </div>
+                <?php }elseif($_SESSION['flash'] == 'availability'){ ?>
+                <div class="notif-popup">
+                    <i class="fas fa-times-circle"></i>
+                    <p>This room currently unavailable.</p>
+                    <button class="notif-trigger">Continue</button>
+                </div>
         <?php unset($_SESSION['flash']); } endif; ?>
 
         <?php include_once ('template.include/header.php') ?>

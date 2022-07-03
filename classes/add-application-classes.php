@@ -51,4 +51,24 @@ class Addapplication extends Dbh{
        return $resultCheck;
     }
 
+    protected function checkIfRoomAvailable($room_id){
+        $result = $this->connect()->prepare("SELECT status FROM room WHERE id = ?;");
+
+        if(!$result->execute(array($room_id))){
+            $result = null;
+            header("location: ../listing.php?error=sqlchecktenantfailed");
+            exit();
+        }
+
+       $resultCheck;
+       $value = $result->fetchColumn();
+       if($value == 0 || $value == 2){
+           $resultCheck = false;
+       }else{
+           $resultCheck = true;
+       }
+
+       return $resultCheck;
+    }
+
 }

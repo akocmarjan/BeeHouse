@@ -1163,6 +1163,14 @@ html * {
       .td-app:nth-of-type(5):before { content: "Status"; }
       .td-app:nth-of-type(6):before { content: "Action"; }
 
+      .td-app2:nth-of-type(1):before { content: "Name"; }
+      .td-app2:nth-of-type(2):before { content: "Gender"; }
+      .td-app2:nth-of-type(3):before { content: "Contact number"; }
+      .td-app2:nth-of-type(4):before { content: "Property name"; }
+      .td-app2:nth-of-type(5):before { content: "Room number"; }
+      .td-app2:nth-of-type(6):before { content: "Status"; }
+      .td-app2:nth-of-type(7):before { content: "Action"; }
+
       .td-ch:nth-of-type(1):before { content: "Date started"; }
       .td-ch:nth-of-type(2):before { content: "Due ammount"; }
       .td-ch:nth-of-type(3):before { content: "Due date"; }
