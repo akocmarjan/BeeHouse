@@ -65,6 +65,12 @@ if(isset($_POST['submit'])){
                     <p>This room currently unavailable.</p>
                     <button class="notif-trigger">Continue</button>
                 </div>
+                <?php }elseif($_SESSION['flash'] == 'full'){ ?>
+                <div class="notif-popup">
+                    <i class="fas fa-times-circle"></i>
+                    <p>This room is already full.</p>
+                    <button class="notif-trigger">Continue</button>
+                </div>
         <?php unset($_SESSION['flash']); } endif; ?>
 
         <?php include_once ('template.include/header.php') ?>
