@@ -11,6 +11,7 @@ if(isset($_POST['submit']))
     $password = $_POST['password'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $con_password = $_POST['conPassword'];
+    $image = $_POST['image'];
 
     include '../classes/dbh-classes.php';
     include '../classes/signup-tenant-classes.php';

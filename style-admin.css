@@ -410,3 +410,15 @@ body{
     width: 45px;
   }
 }
+
+
+p span{
+  font-weight: 600;
+}
+
+.notif{
+  text-align: center;
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+}

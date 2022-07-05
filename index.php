@@ -71,7 +71,14 @@ require ('functions.php');
             <button class="notif-trigger">Continue</button>
         </div>
         <?php unset($_SESSION['flash']); } endif; ?>
-
+        <?php if(isset($_GET["error"])){?>
+        <?php if($_GET['error'] == 'resetpasswordsuccess'){ ?>
+        <div class="notif-popup">
+            <i class="fas fa-check-circle"></i>
+            <p>You have successfully reset you password.</p>
+            <button class="notif-trigger">Continue</button>
+        </div>
+        <?php }} ?>
         <?php include_once ('template.include/header.php') ?>
         
         <?php include_once ('template.include/signin-popup.php') ?>

@@ -82,6 +82,18 @@ session_start();
                         <a href="#" class="btn btn-next"><span>Continue</span></a>
                     </div>
                 </div>
+                <div class="form-step w3-animate-right w3-animate-opacity">
+                    <h1>For verification</h1>
+                    <p class="p-med">To verify if you are a student please send your valid school ID or your school enrollment form.</p>
+                    <div class="input-group">
+                        <span class="inner">Drag & drop image here or <span class="selectt">Browse</span></span>
+                        <input type="file" name="image" id="files">
+                    </div>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-prev"><span>Back</span></a>
+                        <a href="#" class="btn btn-next"><span>Continue</span></a>
+                    </div>
+                </div>
                 <div class="form-step w3-animate-right">
                     <h1>Create password</h1>
                     <p class="p-med">Use a minimum of 10 characters, including uppercase letters, lowercase letters, and numbers.</p>

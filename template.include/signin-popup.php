@@ -35,7 +35,7 @@
                                 <input type="submit" name="submit" class="btn btn-primary" value="Sign in">
                             </div>
                             <div class="form-element">
-                                <a href="#">Forgot password</a>
+                                <a href="forgot-password.php">Forgot password</a>
                             </div>
                         </form>
                     </div>
@@ -60,7 +60,7 @@
                                 <input type="submit" name="submit" class="btn btn-primary" value="Sign in">
                             </div>
                             <div class="form-element">
-                                <a href="#">Forgot password</a>
+                                <a href="forgot-password.php">Forgot password</a>
                             </div>
                         </form>
                     </div>
